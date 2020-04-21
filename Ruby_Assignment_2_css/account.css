@@ -1,0 +1,49 @@
+body{
+    background-image: url('images (1).jpg');
+    background-size: cover;
+background-repeat: no-repeat;
+}
+form{
+    text-align: center;
+    
+}
+input[type="text"], input[type="text"]{
+    color: grey;
+    font-size:15px;
+    margin: 10px;
+    width: 450px;
+    height: 35px;
+    background-color: black;
+    
+}
+input[type="email"], input[type="email"]{
+    width: 450px;
+    height: 35px;
+    border: 1px solid grey;
+    color:grey;
+    background-color:black ;
+    outline: none;
+    font-size:15px;
+    margin: 10px;
+
+}
+input[type="password"], input[type="password"]{
+    width: 450px;
+    height: 35px;
+    border: 1px solid grey;
+    color:grey;
+    background-color:black;
+    font-size:15px;
+    margin: 10px;
+
+}
+input[type="submit"], input[type="submit"]{
+    width: 450px;
+    height: 35px;
+    background-color: rgb(6, 6, 136);
+    border: 1px solid grey;
+    color:grey;
+    font-size:15px;
+    margin: 10px;
+
+}

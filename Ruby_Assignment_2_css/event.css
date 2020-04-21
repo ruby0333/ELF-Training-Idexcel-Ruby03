@@ -1,0 +1,39 @@
+body{
+    background-image: url('download.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table{
+    border: 1px solid black;
+    width: 400px;
+    height: 500px;
+    margin-top: 50px;
+    margin-bottom:100px ;
+    
+    background-color: grey;
+    margin-left: 346px;
+    
+
+}
+th{
+    background-color: black;
+}
+tr{
+    background-color: grey;
+}
+input[type="email"], input[type="email"]{
+    border: 1px solid grey;
+    font-size:15px;
+    
+
+}
+input[type="submit"]{
+    width: 110px;
+    height:35px;
+    margin: 20px;
+    background-color: red;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+
