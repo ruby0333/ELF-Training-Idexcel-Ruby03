@@ -1,0 +1,54 @@
+body{
+    background-image: url('gradient-1761190_960_720.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+ }
+ ul{
+    list-style-type: none;
+    /*margin-top: 0px;
+    padding: 0px;*/
+    background-color:rgba(31, 31, 161, 0.589);
+    overflow:hidden;
+    height: 50px;
+    
+    
+}
+li{
+    float:left;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin bottom: 20px;
+}
+li a{
+    text-decoration: none;
+    
+    padding: 40px;
+    color: cornsilk;
+    font-size: 20px;
+}
+li a:hover{
+background-color: darkcyan;
+}
+ input[type="submit"]{
+     border: 1px solid black;
+ }
+input[type="submit"]:hover{
+    background-color:green;
+    color: ivory;
+}
+ table{
+     width: 100%;
+ }
+th{
+    background-color:rgba(31, 31, 161, 0.589);
+    overflow:hidden;
+    height: 30px;
+    border: 1px solid rgb(4, 4, 71);
+    text-align: left;
+
+}
+td{
+    width: 300px;
+     font-family: inherit;
+}
