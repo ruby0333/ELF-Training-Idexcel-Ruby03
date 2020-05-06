@@ -1,0 +1,337 @@
+                                                  POSTGRE SQL
+                                             -----------------------
+What is data ?
+Ans - Raw facts that define the attributes of an entity.
+
+Application
+--------------
+1.Do specific task have dedicated functinally.
+2. Has its own file extension.
+3. Platform independent
+4. Collection of Packages.
+
+DBMS -->S/W to manage the database
+        * delete
+        * update
+        * insert
+
+TYPES OF DBMS
+------------------
+1.Network DBMS
+2.RDBMS
+3.Hierachical DBMS
+4.Object oriented DBMS : This is an object based database.
+
+NOTE : Network dbms,hierachical dbms,object oriented dbms, are used before 1970.
+       RDBMS after 1971 used.
+
+RELATIONAL DBMS
+-------------------
+RDBMS : A DBMS which organize and store the data by following Relatinal-Model is known as RDBMS.
+        This defines database relational in the from tables, also known as relations.
+
+R-MODEL : DBMS which follows the E.F Codd rules known as R-Model.
+
+TABLE : It is the logical representation of data which consist of rows and columns.
+COLUMNS : Attributs and field ,it is used to represent all the properties of all the entities.
+ROWS : Records ,truple.
+CELL : Smallest unit of table which is used to store a data. 
+
+RULES OF EF CODD RULES :
+
+Rule 1. The data entered into the cell should be single valued or atomic value.
+
+Rule 2. We can store the data in multiple tables if needed we can establish connection b/w two tables using key attributes.
+
+Rule 3: Systematic treatment of NULL
+Null has several meanings, it can mean missing data, not applicable or no value. It should be handled consistently. Also, Primary key must not be null, ever. Expression on NULL must give null.
+ 
+Rule 4: Active Online Catalog
+Database dictionary(catalog) is the structure description of the complete Database and it must be stored online. The Catalog must be governed by same rules as rest of the database. The same query language should be used on catalog as used to query database.
+
+Rule 5: Powerful and Well-Structured Language
+One well structured language must be there to provide all manners of access to the data stored in the database. Example: SQL, etc. If the database allows access to the data without the use of this language, then that is a violation.
+
+Rule 6: View Updation Rule
+All the view that are theoretically updatable should be updatable by the system as well.
+
+Rule 7: Relational Level Operation
+There must be Insert, Delete, Update operations at each level of relations. Set operation like Union, Intersection and minus should also be supported.
+
+Rule 8: Physical Data Independence
+The physical storage of data should not matter to the system. If say, some file supporting table is renamed or moved from one disk to another, it should not effect the application.
+
+Rule 9: Logical Data Independence
+If there is change in the logical structure(table structures) of the database the user view of data should not change. Say, if a table is split into two tables, a new view should give result as the join of the two tables. This rule is most difficult to satisfy.
+
+Rule 10: Integrity Independence
+The database should be able to enforce its own integrity rather than using other programs. Key and Check constraints, trigger etc, should be stored in Data Dictionary. This also make RDBMS independent of front-end.
+
+Rule 11: Distribution Independence
+A database should work properly regardless of its distribution across a network. Even if a database is geographically distributed, with data stored in pieces, the end user should get an impression that it is stored at the same place. This lays the foundation of distributed database.
+
+Rule 12: Nonsubversion Rule
+If low level access is allowed to a system it should not be able to subvert or bypass integrity rules to change the data. This can be achieved by some sort of looking or encryption.
+
+NOTE : It is not mandatory to have a primary key in the table but it is highly recommented to have a primary key.
+
+Ques) What is constraints ?
+Ans - Constraints are the rules enforced on the data columns of a table. These are used to limit the type of data that can go into a table.
+
+TYPES OF CONSTRAINTS :
+1.NOT NULL : It should have some value or in the other words the constraints is used to specify that the data is mandatory.
+2.CHECK CONSTRAINTS : It is an extra validation given to a columns with a conditions.
+3.PRIMARY KEY : It is the combination of not null and unique key.
+4.UNIQUE KEY : It is used to avoid duplicacy of value into the column.
+5.FOREGIN KEY :- It is used to established the relationhip b/w two tables.
+               - We can have 'n' number foreign key in table.
+               - It can be duplicates and can have null values.
+
+CHARACTERICS  
+---------------------
+1.A table in which foregin key is present is known as child table.
+2.A table in which its actually belong to parents key.
+3.FK must and should be define as primary key in parent table.
+4.We cannot insert a value in a column define as a FK which is not present in the parent table column.
+5.FK is also known as referral integrity constraint.
+
+DATA TYPE 
+-----------------
+1. Numeric : * Date -> YYYY-MM-DD
+             * Time -> HH:MI:SS 
+             * DATE TIME -> YYYY-MM-DD HH:MI:SS
+
+2. CHAR    : A to Z ,0-9 and some special character.
+             char(size)
+             char(10)
+             Ravi
+  *VARCHAR(10)-> Its a variable memory allocation.
+
+NOTE - Data type are mandatory but constraints can be optional.
+==========================================================================================================================
+SQL 
+---------
+Language it helps to communicate with RDBMS application.
+*IBM was first company to developed which follow the relational model also known as system R.
+*IBM developed a language to communicate with system R it is known as SEQUEL(SIMPLE ENGLISH QUERY LANGUAGE).
+*ANSI acquried SEQUEL recommended to SQL.
+*SQL is standard language for all the RDBMS application.
+*SQL is case insensitive language.
+
+ORDBMS=>RDBMS+OODBMS
+        An ORDBMS is a hybrid combination of RDBMS and OODBMS(object oriented dbms) that 
+        allow developer to integrate the database with their own custom datatype and method.
+
+POSTGRES OR POSTGRESQL 
+----------------------------
+*Its an open source object relational db.
+*It is the worlds most advanced open source relational DB.
+*It is written in C language.
+
+DDL :Data defination language
+     *Create
+     *Alter
+     *Drop
+     *Rename
+     *Truncate
+DML :Data Manipulation Language
+     *Insert
+     *Update
+     *Delete
+DCL :Data control language
+     *Grant
+     *Revoke
+TCL :Transactional control language
+     *Commit
+     *Roll back
+     *Save point
+DQL :Data query language
+
+DDL -
+----------
+
+Syntax for creating database : 
+
+CREATE DATABASE database_name
+                           
+*\l ->To check how many database present in DB.
+*\c database_name; -> To connect the database which we want.
+*\d -> To check any data present in database.
+
+CREATE TABLE :
+
+Syntax -CREATE TABLE table_name(column_name data_type constraint);
+Example - create table Person(id int,name varchar(50),email varchar(200));
+
+*\d Person -> To check data of table structure.
+
+ALTER : ADD
+Syntax - ALTER table_name ADD column_name;
+Example -alter Person add column age int;
+
+DROP :
+Syntax - ALTER table_name drop column_name;
+Example -alter Person drop column age ;
+
+RENAME:
+Syntax - ALTER table_name RENAME column_old_name to new_name;
+Example -alter Person rename name to ename;
+
+RENAME TABLE :
+Syntax -ALTER TABLE table_name RENAME TO new_table_name;
+
+*To change the database name:
+syntax-ALTER database_name to new_database_name;
+Example - alter database test_db to test;
+
+DROP TABLE :
+Syntax - DROP TABLE table_name;
+Example - drop table emp;  
+
+Salary --- double precision
+================================================================================
+DQL--Data Query Language
+Select 
+
+There are different ways to retrive the data from table
+1.Projection:         
+2.Selection:rows and columns
+3.Join:retriving a data from multiple table.
+
+Syntax:
+
+SELECT*/[DISTINCT] COLUMN_NAME/EXPRESSION [ALIAS]
+FROM TABLE_NAME;
+
+Select*from Employee;---eg selection
+
+*->special character it help us to retrive all the column/data in table.
+
+order of Execution:
+from
+select
+       
+select ename from Employee;-- eg projection
+
+write query to display name deptno salary from table.
+->select ename.deptno,salary from Employee;
+
+write a query to insert to more then one record in a same table.
+
+Update:
+Syntax: update table_name set column_name=value;
+
+Delete:
+delete from table_name;
+
+Where Clause: it will execute row by row if the condition got satisfy it will return the value else it will
+              reject the row.we use where clause
+
+SELECT*FROM table_name WHERE condition;
+syntax: select* from Employee where id=13;
+
+question- W.A.Q to Update a salary whose empid is 104
+syntax- update Employee set salary=30000.00 where id=104;
+
+Delete with where clause:
+syntax:delete from Employee where empid=12;
+
+Order of Execution:
+*from
+*where
+*select
+
+Qus) insert a two row in a column ?
+* insert into Employee values(21,'Ankita','software developer','2015-12-12',8999.89,24,'rita89@gmail.com',30,9856743210),(20,'Shila','Tester','2016-12-12',9900.89,26,'rita89@gmail.com',20,9876543210);
+=====================================================================================================================================================
+Date->05-05-2020
+
+Q.) W.A.Q to delete a record whose empid is 108 ?
+ Ans -  delete from Employee where empid=108;
+
+EXPRESSION-It consist of operator and operand
+
+      incrementsal=sal+500  (+ is operator)
+
+1.Column_name
+2.Literal->The direct value or real value use in the SQL statement.
+ * Number-the direct value for literal is known as number literal.
+ * Character-it shoould be in the single inverted coma eg-'ruby'.
+ * 
+Date-'1999-23-09'
+
+OPERATORS:
+1.Arithmetic Operators-(+,-,/,%)
+2.Logical  Operators
+3.Comparision  Operators
+4.Special Operators
+
+ALIAS: SQL aliases are used to give a table,or a column in a table, a temporary name.
+       Aliases are often used to make column names more readable.
+
+Syntax: SELECT column_name AS alis_name FROM table_name AS alias_name;
+NOTE  - 'AS' keyword is optional.
+
+Ques) write a query to change designation name to job_type ?
+ Ans  -   select designation as job_type from Employee;
+ * without using 'as' keyword
+ Ans  -  select designation job_type from Employee;
+
+Ques) Add a two number and give column name as 'ADD' and same thing for substration also...?
+ Ans  -  select (4+5) add; 
+         select (9-5) substraction;
+
+ASSIGNMENT:
+---------------
+Ques)1. W.A.Q to obtained employee name and current salary and a new salary wid a hike 25% of all emp ?
+     Ans - select ename,salary,salary + (salary * 25/100) as NewSalary from Employee;
+
+     2. W.A.Q to display all the record of emp increment wid 500rs of each emp ?
+     Ans - select (salary+500) salary from Employee;
+
+     3. W.A.Q to display all the record of emp decrement wid 500rs of each emp ?
+     Ans - select (salary-500) salary from Employee;
+
+     4. W.A.Q to display salary and annual salary of all the emp?
+     Ans - select salary,(salary*12) Annual_salary from Employee;
+
+     5. W.A.Q to display per day salary of all the emp?
+     Ans - select (salary/30) daily_salary from Employee;
+==================================================================================================================
+Date-06-05-2020
+
+DISTINCT :SELECT distinct statement is used to return only distinct(different) values.
+      
+Syntax - select distinct column_name from table_name;
+*with single argument   - if we are passing the single arg it will remove the duplicate value.
+      eg -   select distinct ename from Employee;
+
+* with more then one argument-if we have more then one arg it will remove the duplicate value and give the combination both the value.
+      eg - select distinct ename, deptno from Employee;
+
+COMPARISON OPERATORS :(>,<,=,>=,<=,!=,<>)
+
+Note- (<>) it is also work as not equal operator.
+-----
+Ques)Write a query to display all the info whose deptno is 10?
+Ans - select * from Employee where deptno=10;
+
+Ques) Write a query to display all the info whose salary is greater then 10000?
+Ans - select * from Employee where salary>10000;
+
+Ques) Write a query to display all the record of the emp whose salary is greater than 25000?
+Ans - select* from Employee where salary>25000;
+
+Ques) Write a query to display all the record of the emp whose salary is greater equal to 25000?
+Ans - select* from Employee where salary>=25000;
+
+Ques) Write a query to display all the record of the emp whose salary is less than 25000?
+Ans - select* from Employee where salary<25000;
+
+Ques) Write a query to display all the record of the emp whose salary is less equal to 25000?
+Ans - select* from Employee where salary<=25000;
+
+Ques) Write a query to display all the record of the emp whose salary is not equal to 25000?
+Ans - select* from Employee where salary!=25000;
+
+LOGICAL OPERATORS :
