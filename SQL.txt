@@ -189,9 +189,8 @@ Syntax - DROP TABLE table_name;
 Example - drop table emp;  
 
 Salary --- double precision
-================================================================================
+=============================================================================================================================
 DQL--Data Query Language
-Select 
 
 There are different ways to retrive the data from table
 1.Projection:         
@@ -333,5 +332,158 @@ Ans - select* from Employee where salary<=25000;
 
 Ques) Write a query to display all the record of the emp whose salary is not equal to 25000?
 Ans - select* from Employee where salary!=25000;
+================================================================================================================
+Date-07-05-2020
 
-LOGICAL OPERATORS :
+LOGICAL OPERATORS :(AND ,OR, NOT)
+
+AND :
+Syntax : SELECT * FROM table_name WHERE conditional_1 and condition_2;
+
+QUES) WAQ to display all the record of the employee whose designation is hr and deptno is 40 ?
+Ans - select * from Employee designation ='HR' and deptno =40;
+
+Ques) WAQ to display all the record of the Employee whose working as salaesman and hired after 2016.
+Ans - select * from Employee where designation ='Salesman' and hiredate > '2016-12-31';
+
+Ques) WAQ to display all the record of the Employee whose working as HR in deptno 40 only if salary is greater then 20000 ?
+Ans - select * from Employee where designation ='HR' and deptno= 40 and salary=20000;
+
+OR :
+Syntax - SELECT * FROM table_name WHERE conditional_1 or conditional_2;
+
+QUES) WAQ to display emp working in deptno 10,20 ?
+Ans - select * from Employee where deptno =10 or deptno=20;
+
+QUES) WAQ to display name, salary, deptno whose working as Teater or whose salary is equals to 18000 ?
+Ans - select * from Employee ename, salary, deptno from Employee where designation='Tester' or salary=15000;
+
+QUES) WAQ to display name of all the emp working as Tester as well as deptno=20 or working as clerk whose salary is greater then equal to 15000 ?
+Ans - select * from Employee ename from Employee designation='Teater' or deptno=30;
+
+NOT :
+Syntax - SELECT * FROM table_name WHERE not condition;
+
+QUES) WAQ is display all the record whose not working is deptno is 30 ?
+Ans - select * from Employee where not deptno=30;
+* select * from Employee where deptno!=10;
+* select * from Employee where deptno<>10;
+
+ORDER OF EXECUTION
+------------------------
+*NOT
+*AND
+*OR
+
+QUES)WAQ to display all the record of emp execution 'HR' whose working in deptno=40?
+Ans - select* from Employee where designation!='HR' and deptno!=40;
+    - select * from Employee where not designation='HR' and deptno=30;
+
+QUES)WAQ to display all the emp who has hired after january 2015 working as Tester in deptno=20 or display all the record who has hired before 2015?
+Ans - select * from Employee where (hiredate>'2015-01-31' and designation='Tester' and deptno=20) or hiredate <'2015-01-01';
+
+QUES)WAQ to display all record of the emp whose working in deptno=10,30,40,50,60 ?
+Ans - select * from Employee where deptno=10 or deptno=30 or deptno=40 or deptno=50 or deptno=60;
+
+SPECIAL OPERATOR
+---------------------
+IN - Its a type of special where it will contains multiple values.
+Syntax - SELECT * FROM table_name where column_name IN(value1 , value2, value3-------valuen);
+
+QUES)WAQ to display all record of the emp whose working in deptno=10,30,40,50,60 ?
+Ans- select * from Employee where deptno IN(10,20,30,40,50,70);
+   - 10 IN (10,20,40,60,70);
+   - 20 IN (10,20,40,60,70);
+   - 80 IN (10,20,40,60,70);
+
+WAQ to display all the record of the emp whose working as salesman, manager or admin?
+Ans - select * from Employee where designation IN('Salesman','Manager','Admin');
+
+NOT IN
+----------------
+Syntax - SELECT * FROM table_name WHERE column_name NOT IN(value1,value2,value3------value_n)
+
+QUES) WAQ to display all the record of the emp whose working as deptno 50,30,40 execulding HR and salesman ?
+Ans - select * from Employee where deptno IN(50,30,40)  and designation NOT IN('HR','Salesman')
+
+BETWEEN OPERATOR
+------------------------
+Syntax - SELECT * FROM table_name WHERE column_name value_1 BETWEEN value_2; 
+
+QUES)WAQ to display all the record of the emp whose salary range is within 20000 to 40000 ?
+Ans - select * from Employee where salary>20000 and salary<40000;
+    - select * from Employee where salary between 20000 and 40000; (using between)
+
+QUES)WAQ to display 100 between 50 and 150 ?
+ Example -    100>=50
+              100<=150 // True
+
+              151>=50
+              151<=150 // False
+
+QUES)WAQ to display all the emp record who get hired in 2014 ?
+Ans - select * from Employee where hiredate between '2014-01-01' and '2014-12-31';
+
+QUES)WAQ to display ename salary of the emp whose working in deptno=10,20 and there annual salary  between 40000 to 50000?
+Ans - select ename,salary from Emloyee where deptno IN(10,20) and salary*12 between 40000 and 50000;
+
+NOT BETWEEN
+-----------------------------
+Syntex - SELECT * FROM table_name WHERE column_name NOT BETWEEN value_1 and value_2; 
+
+QUES)WAQ to display all the record of the emp execulding who hired into 2015 and 2017?
+Ans - select * from Employee where hiredate not between '2015-01-01' and '2017-12-31';
+
+IS OPERATOR
+-----------------------
+Null = no values 
+a+ Null= Null
+
+IS- It is used to check only null values.
+
+Syntax - SELECT * FROM table_name WHERE column_name IS NULL;
+
+NOT IS
+---------------------
+Show the not null values.
+
+Syntax - SELECT * FROM table_name WHERE column_name IS NOT NULL; 
+==================================================================================================================
+Date-11-05-2020
+
+LIKE OPERATOR
+----------------------
+Character
+Ordinary Character - a to z
+                   - A to Z
+                   - 0 to 9
+
+Special Character  - *
+                   - % -> ram,rahul,rita,riya
+                   - _ -> it hold only one letter
+
+Syntax - SELECT * FROM table_name WHERE column_name like '%/_';
+
+QUES )WAQ to dispaly all the record of the emp whose name start wid 'R'?
+Ans - select * from Employee where ename like 'R%';
+
+QUES)WAQ to display all the record of the emp whose having 3 letter
+Ans - select * from Employee where ename like '___';
+
+QUES)WAQ to display all the record of the emp who has atleast two 'L' in there names?
+Ans - select * from Employee where ename like '%L%L%';
+
+QUES)WAQ to whose name start with S and end with P? 
+Ans - select * from Employee where ename like 'S%P'; 
+
+QUES)WAQ  display all the record of the emp whose name  length is 5 starting charater should be S AND L IS IN 2ND LAST CHARATHER?
+Ans- select * from Employee where ename like 'S__L_';
+
+QUES)WAQ to display all details of the emp if the emp name began with S or A ? 
+Ans - select * from Employee where ename like 'S%' or ename like 'A%';
+
+QUES)WAQ  to display all the details of the emp ename not end wid Z and and not start wid P?
+Ans - select * from Employee where ename not like '%Z' and ename not like 'P%';
+
+
+
