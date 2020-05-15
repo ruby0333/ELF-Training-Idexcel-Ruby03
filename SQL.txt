@@ -485,5 +485,221 @@ Ans - select * from Employee where ename like 'S%' or ename like 'A%';
 QUES)WAQ  to display all the details of the emp ename not end wid Z and and not start wid P?
 Ans - select * from Employee where ename not like '%Z' and ename not like 'P%';
 
+ASSIGNMENT FOR OPERATOR
+-------------------------------------------
+QUES.1) LIST ALL THE EMPLOYEES WHOSE SALARY IS NULL ?
+Ans - select * from Employee where salary is null;
+
+QUES.2) LIST ALL THE EMPLOYEES WHO DON’T HAVE A DEPT NO ?
+Ans - select * from Employee where deptno is null;
+
+QUES.3) LIST ALL THE SALESMEN IN DEPT 30 ?
+Ans - select * from Employee where designation='Salesman' and deptno=30;
+
+QUES.4) LIST ALL THE SALESMEN IN DEPT NUMBER 30 AND HAVING SALARY GREATER THAN 1500 ?
+Ans - select * from Employee where designation='Salesman' and deptno=30 and salary>1500;
+
+QUES.5) LIST ALL THE EMPLOYEES WHOSE NAME STARTS WITH ‘S’ OR ‘A’?
+Ans -  select * from Employee where ename like 'S%' or ename like 'A%';
+
+QUES.6) LIST ALL THE EMPLOYEES EXCEPT THOSE WHO ARE WORKING IN DEPT 10 & 20 ?
+Ans -  select * from Employee where deptno NOT IN(10,20);
+
+QUES.7) LIST THE EMPLOYEES WHOSE NAME DOES NOT START WITH ‘S’ ?
+Ans - select * from Employee where ename not like 's%';
+
+QUES.8) LIST ALL THE EMPLOYEES WHO ARE HAVING REPORTING MANAGERS IN DEPT 10 ?
+Ans - select * from Employee where repmgr is not null and deptno=10;
+
+QUES.9) LIST ALL THE EMPLOYEES WHOSE SALARY IS NULL AND WORKING AS CLERK ?
+Ans - select * from Employee where salary is null and designation='Clerk';
+
+QUES.10) LIST ALL THE EMPLOYEES WHO DON’T HAVE A REPORTING MANAGER IN DEPTNO 10 OR 30 ?
+Ans - select * from Employee where repmgr is null and deptno IN(10,20);
+
+QUES.11) LIST ALL THE SALESMEN IN DEPT 30 WITH SAL MORE THAN 2450 ?
+Ans - select * from Employee where designation='Salesman' and deptno=30 and salary >2450;
+
+QUES.12) LIST ALL THE ANALYST IN DEPT NUMBER 20 AND HAVING SALARY GREATER THAN 2500 ?
+Ans - select * from Employee where designation='Analyst' and deptno=20 and salary>2500;
+
+QUES.13) LIST ALL THE EMPLOYEES WHOSE NAME STARTS WITH ‘M’ OR ‘J’ ?
+Ans - select * from Employee where ename like 'M%' or ename like 'J%';
+
+QUES.14) LIST ALL THE EMPLOYEES WITH ANNUAL SALARY EXCEPT THOSE WHO ARE WORKING IN DEPT 30 ?
+Ans - select ename,salary*12 as annual_sal from Employee where  deptno != 30;
+
+QUES.15) LIST THE EMPLOYEES WHOSE NAME DOES NOT END WITH ‘ES’ OR ‘R’ ?
+Ans - select * from Employee where ename not like '%ES' or ename not like '%R';
+
+QUES.16) LIST ALL THE EMPLOYEES WHO ARE HAVING REPORTING MANAGERS IN DEPT 10 ALONG WITH 10% HIKE IN SALARY ?
+Ans - select ename,salary,salary + (salary * 25/100) from Employee repmgr is not null and deptno=10 ;
+
+QUES.17) DISPLAY ALL THE EMPLOYEE WHO ARE ‘SALESMAN’S HAVING ‘E’ AS THE LAST BUT ONE CHARACTER  IN ENAME BUT SALARY HAVING EXACTLY 4 CHARACTER?
+Ans - select * from Employee designation='Salesman' and ename like '%E' and salary like '____';
+
+QUES.18) DISPLAY ALL THE EMPLOYEE WHO ARE JOINED AFTER YEAR 81 ?
+Ans - select * from Employee where hiredate like '__81-__-__';
+
+QUES.19) DISPLAY ALL THE EMPLOYEE WHO ARE JOINED IN FEB ?
+Ans - select * from Employee where cast(hiredate as varchar) like '____-12-__';
+
+QUES.20) LIST THE EMPLOYEES WHO ARE NOT WORKING AS MANAGERS AND CLERKS IN DEPT 10 AND 20 WITH A SALARY IN THE RANGE OF 1000 TO 3000?
+Ans - select * from Employee where designation !='HR' and designation !='Clerk' and deptno IN(10,20) and salary between
+      1000 to 15000;
+
+QUES.21) LIST THE EMPLOYEES WHOSE SALARY NOT IN THE RANGE OF 1000 TO 2000 AND WORKING IN DEPT 10,20 OR 30 EXCEPT ALL SALESMEN ?
+Ans - select * from Employee where salary not between 10000 and 20000 and deptno IN(40,20,30) and designation !='Salesman';
+
+QUES.22) LIST THE DEPARTMENT NAMES WHICH ARE HAVING LETTER ‘O’ IN THEIR LOCATIONS AS WELL AS THEIR DEPARTMENT NAMES ?
+Ans - select dname from Employee where location like '%O% and dname like '%O%';
+
+QUES.23) DISPLAY ALL THE EMPLOYEES WHOSE JOB HAS STRING ‘MAN’ IN IT ?
+Ans - select * from Employee where designation like '%man%';
+
+QUES.24)LIST THE EMPLOYEES WHO ARE HIRED AFTER 82 AND BEFORE 87 ?
+Ans - select * from Employee where hiredate between '1982-12-31' and '1987-01-01';
+
+QUES.25)WAQTD ALL THE DETAILS OF EMPLOYEES HIRED IN NOVEMBER AND DECEMBER ?
+Ans - select * from Employee where cast(hiredate as varchar) like '____-11-__' or cast(hiredate as varchar) like '____-12-__';
+
+QUES.26)LIST ALL THE EMPLOYEE NAMES AND COMISSION FOR THOSE EMPLOYEES WHO EARN COMISSION MORE THAN THEIR SALARY ?
+Ans - select ename, comission from Employee where comission >salary;
+
+QUES.27)WAQTD NAME AND DESIGNATION FOR ALL THE EMPLOYEES HAVING REPORTING MANAGERS AND ALSO THRIE NAMES STARTING WITH ‘S’ ?
+Ans - select ename,designation where repmgr is not null and ename like 'S%';
+
+QUES.28)WAQTD NAME AND SALARY OF ALL THE EMPLOYEES IF THEIR ANNUAL SALARY ENDS WITH ‘0’ ?
+Ans - select ename , salary*12 as salary where annual_sal like '%0';
+
+QUES.29)WAQTD NAME OF THE EMPLOYEE HAVING ATLEAST 2L’s IN HIS NAME ? 
+Ans -select * from Employee where ename like '%L%L%';
+
+QUES.30)WAQTD NAME OF THE EMPLOYEES WHOS NAME STARTS WITH A ‘VOWEL’ ?
+Ans - select * from Employee where ename like 'A%' or ename like 'O%' or ename like 'E%' or  ename like 'I%' or  ename like 'U%';
+5
+FUNCTION
+----------------------------
+Function is a block of code which is use to perform a specific task.
+
+For doing operation on data SQL has many built in functions .
+
+*Aggregate Function -its a multi-row function having N number of input but only give one output. or
+                     performs a calculation on a set of values, and returns a single value.
+
+*Scaler Function - single-row function according to per-input u will get that per-output or  
+                   accept one or more parameters but return only one value.
+
+Aggregate Functions are :
+1. AVG() - Return avg of all the values of the selected column
+2.COUNT() - Return counts of all the values of the selected column
+3.MAX() - Return maximum values of all the values of the selected column
+4.MIN() - Return minimum  values of all the values of the selected column
+5.SUM() - Return sum of all the values of the selected column
+
+AVERAGE :
+Syntax - SELECT AVG(column_name) FROM table_name;
+
+QUES) WAQ to obtained of the avg salary of the emp ?
+Ans - select avg(salary) from Employee;
+
+COUNT :
+Syntax - SELECT  COUNT(column_name) FROM table_name;
+
+QUES) WAQ to obtained of the count salary of the emp ?
+Ans - select count(salary) from Employee;
+
+MAX :
+Syntax - SELECT MAX(column_name) FROM table_name;
+
+QUES) WAQ to obtained of the max salary of the emp ?
+Ans - select max(salary) from Employee;
+
+MIN :
+Syntax - SELECT MIN(column_name) FROM table_name;
+
+QUES) WAQ to obtained of the min salary of the emp ?
+Ans - select min(salary) from Employee;
+
+SUM :
+Syntax - SELECT SUM(column_name) FROM table_name;
+
+QUES) WAQ to obtained  sum of the salary of the emp ?
+Ans - select sum(salary) from Employee;
 
 
+QUES) WAQ to obtained  sum of the,avg,min,count the salary of the emp ?
+Ans - select sum(salary) total_salary,avg(salary) avg_sal ,count(salary) count_sal, min(salary) minimum_sal,max(salary) 
+      maximum_sal; 
+==============================================================================================================
+Date-14-05-2020
+
+ORDER CLAUSE
+------------------------------
+*The ORDER BY keyboard used to sort the result-set in ascending or descending order.
+*The ORDER BY keyword sorts the record in ascending order by default.To sort the records in
+ descending order,use the DESC keyword.
+
+Syntax - SELECT column1,column2/* FROM table_name
+         ORDER BY column1 ASC|DESC;
+
+NOTE : 1.by default order will be sorted in ASC order. and order by clause is alwyas written in last of the query.
+       2.order by clause always execute after where clause.
+       3.If the group by clause is used then order by clause in multirow.
+
+ORDER OF EXECUTION :
+*from
+*where
+*select
+*order by
+
+QUES)WAQ to displaay all the record salary should be in DESC Order?
+Ans - select * from Employee order by salary;
+
+QUES)WAQ to display  and sort the record on hirdate desc if there is more then one record same date then shown highest salary should be  first?
+Ans - select * from Employee hiredate desc , salary asc;
+
+QUES)WAQ to display name of emp,sal, annual sal and sort the record in asc order in annual salary ?
+Ans - select ename, salary,12*salary annual_sal from Emlployee order by annual_sal;
+  
+QUES)WAQ to display name,designation who are working in either or the dept 10,20,30 and sort the record in asc order by there salary?
+Ans - select ename, designation from Employee where deptno IN(10,20,40) order by annual_sal;
+
+GROUP BY CLAUSE :
+---------------------------------
+ORDER OF execution :
+*from
+*where
+*group
+*select
+NOTE - group by clause execute row by row.
+     - After the  execution of group by clause the record are grouped there fore, 
+       all the clauses will be execute after the execution of group by clause,will execute
+       group by group( for each group). 
+
+QUES)WAQ to display number of deptno?
+Ans - select count(*),deptno from Employee group by deptno;
+
+QUES)WAQ to display the hightest salary of emp in each dept?
+Ans - select max(salary),deptno from Employee group by deptno;
+
+QUES)WAQ to display no of tester working in each dept?
+Ans - select count(*),deptno from Employee where designation='Tester' group by deptno; 
+
+HAVING CLAUSE
+-------------------------
+It is use to filter group on the condition.
+
+Syntax - SELECT * FROM table_name WHERE (row_filter_condition) GROUP BY column_name HAVING (group_filter_condition)
+NOTE - having clause will always execute after the group by clause 
+
+ORDER OF EXECUTION
+-----------------------
+*from
+*where
+*select
+*having
+         
+
+QUES)WAQ to display  deptno which have atleast two clerk only.
+Ans-select deptno from Employee where designation='Clerk' group by deptno having count(*)=2;
