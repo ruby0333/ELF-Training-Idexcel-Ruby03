@@ -1,0 +1,152 @@
+ASSIGNMENT FOR OPERATOR
+-------------------------------------------
+QUES.1) LIST ALL THE EMPLOYEES WHOSE SALARY IS NULL ?
+Ans - select * from Employee where salary is null;
+
+QUES.2) LIST ALL THE EMPLOYEES WHO DON’T HAVE A DEPT NO ?
+Ans - select * from Employee where deptno is null;
+
+QUES.3) LIST ALL THE SALESMEN IN DEPT 30 ?
+Ans - select * from Employee where designation='Salesman' and deptno=30;
+
+QUES.4) LIST ALL THE SALESMEN IN DEPT NUMBER 30 AND HAVING SALARY GREATER THAN 1500 ?
+Ans - select * from Employee where designation='Salesman' and deptno=30 and salary>1500;
+
+QUES.5) LIST ALL THE EMPLOYEES WHOSE NAME STARTS WITH ‘S’ OR ‘A’?
+Ans -  select * from Employee where ename like 'S%' or ename like 'A%';
+
+QUES.6) LIST ALL THE EMPLOYEES EXCEPT THOSE WHO ARE WORKING IN DEPT 10 & 20 ?
+Ans -  select * from Employee where deptno NOT IN(10,20);
+
+QUES.7) LIST THE EMPLOYEES WHOSE NAME DOES NOT START WITH ‘S’ ?
+Ans - select * from Employee where ename not like 's%';
+
+QUES.8) LIST ALL THE EMPLOYEES WHO ARE HAVING REPORTING MANAGERS IN DEPT 10 ?
+Ans - select * from Employee where repmgr is not null and deptno=10;
+
+QUES.9) LIST ALL THE EMPLOYEES WHOSE SALARY IS NULL AND WORKING AS CLERK ?
+Ans - select * from Employee where salary is null and designation='Clerk';
+
+QUES.10) LIST ALL THE EMPLOYEES WHO DON’T HAVE A REPORTING MANAGER IN DEPTNO 10 OR 30 ?
+Ans - select * from Employee where repmgr is null and deptno IN(10,20);
+
+QUES.11) LIST ALL THE SALESMEN IN DEPT 30 WITH SAL MORE THAN 2450 ?
+Ans - select * from Employee where designation='Salesman' and deptno=30 and salary >2450;
+
+QUES.12) LIST ALL THE ANALYST IN DEPT NUMBER 20 AND HAVING SALARY GREATER THAN 2500 ?
+Ans - select * from Employee where designation='Analyst' and deptno=20 and salary>2500;
+
+QUES.13) LIST ALL THE EMPLOYEES WHOSE NAME STARTS WITH ‘M’ OR ‘J’ ?
+Ans - select * from Employee where ename like 'M%' or ename like 'J%';
+
+QUES.14) LIST ALL THE EMPLOYEES WITH ANNUAL SALARY EXCEPT THOSE WHO ARE WORKING IN DEPT 30 ?
+Ans - select ename,salary*12 as annual_sal from Employee where  deptno != 30;
+
+QUES.15) LIST THE EMPLOYEES WHOSE NAME DOES NOT END WITH ‘ES’ OR ‘R’ ?
+Ans - select * from Employee where ename not like '%ES' or ename not like '%R';
+
+QUES.16) LIST ALL THE EMPLOYEES WHO ARE HAVING REPORTING MANAGERS IN DEPT 10 ALONG WITH 10% HIKE IN SALARY ?
+Ans - select ename,salary,salary + (salary * 25/100) from Employee repmgr is not null and deptno=10 ;
+
+QUES.17) DISPLAY ALL THE EMPLOYEE WHO ARE ‘SALESMAN’S HAVING ‘E’ AS THE LAST BUT ONE CHARACTER  IN ENAME BUT SALARY HAVING EXACTLY 4 CHARACTER?
+Ans - select * from Employee designation='Salesman' and ename like '%E' and salary like '____';
+
+QUES.18) DISPLAY ALL THE EMPLOYEE WHO ARE JOINED AFTER YEAR 81 ?
+Ans - select * from Employee where hiredate like '__81-12-31';
+
+QUES.19) DISPLAY ALL THE EMPLOYEE WHO ARE JOINED IN FEB ?
+Ans - select * from Employee where cast(hiredate as varchar) like '____-02-__';
+
+QUES.20) LIST THE EMPLOYEES WHO ARE NOT WORKING AS MANAGERS AND CLERKS IN DEPT 10 AND 20 WITH A SALARY IN THE RANGE OF 1000 TO 3000?
+Ans - select * from Employee where designation !='HR' and designation !='Clerk' and deptno IN(10,20) and salary between
+      1000 to 15000;
+
+QUES.21) LIST THE EMPLOYEES WHOSE SALARY NOT IN THE RANGE OF 1000 TO 2000 AND WORKING IN DEPT 10,20 OR 30 EXCEPT ALL SALESMEN ?
+Ans - select * from Employee where salary not between 10000 and 20000 and deptno IN(40,20,30) and designation !='Salesman';
+
+QUES.22) LIST THE DEPARTMENT NAMES WHICH ARE HAVING LETTER ‘O’ IN THEIR LOCATIONS AS WELL AS THEIR DEPARTMENT NAMES ?
+Ans - select dname from Employee where location like '%O% and dname like '%O%';
+
+QUES.23) DISPLAY ALL THE EMPLOYEES WHOSE JOB HAS STRING ‘MAN’ IN IT ?
+Ans - select * from Employee where designation like '%man%';
+
+QUES.24)LIST THE EMPLOYEES WHO ARE HIRED AFTER 82 AND BEFORE 87 ?
+Ans - select * from Employee where hiredate between '1982-12-31' and '1987-01-01';
+
+QUES.25)WAQTD ALL THE DETAILS OF EMPLOYEES HIRED IN NOVEMBER AND DECEMBER ?
+Ans - select * from Employee where cast(hiredate as varchar) like '____-11-__' or cast(hiredate as varchar) like '____-12-__';
+
+QUES.26)LIST ALL THE EMPLOYEE NAMES AND COMISSION FOR THOSE EMPLOYEES WHO EARN COMISSION MORE THAN THEIR SALARY ?
+Ans - select ename, comission from Employee where comission >salary;
+
+QUES.27)WAQTD NAME AND DESIGNATION FOR ALL THE EMPLOYEES HAVING REPORTING MANAGERS AND ALSO THRIE NAMES STARTING WITH ‘S’ ?
+Ans - select ename,designation where repmgr is not null and ename like 'S%';
+
+QUES.28)WAQTD NAME AND SALARY OF ALL THE EMPLOYEES IF THEIR ANNUAL SALARY ENDS WITH ‘0’ ?
+Ans - select ename , salary*12 as salary where annual_sal like '%0';
+
+QUES.29)WAQTD NAME OF THE EMPLOYEE HAVING ATLEAST 2L’s IN HIS NAME ? 
+Ans -select * from Employee where ename like '%L%L%';
+
+QUES.30)WAQTD NAME OF THE EMPLOYEES WHOS NAME STARTS WITH A ‘VOWEL’ ?
+Ans - select * from Employee where ename like 'A%' or ename like 'O%' or ename like 'E%' or  ename like 'I%' or  ename like 'U%';
+==================================================================================================================
+
+ASSIGNMENT FOR FUNCTION
+---------------------------------
+
+WAQ)1.List employees whose name having 4 characters ?
+Ans - select ename from Employee where length(ename)=4; 
+
+WAQ)2. List employees whose job is having 7 characters ?
+Ans - select * from Employee where length(designation)=7;
+
+WAQ)3. Find out how many times letter 'S' occurs in 'qspiders' ?
+Ans - select length('qspiders')-length(replace('qspiders','s',''));
+
+WAQ)4. List the employees whose job is having last 3 characters as 'man' ?
+Ans - select ename from Employee where right(designation,3)='man';
+
+WAQ)5. List employees whose job is having first 3 characters as 'man' ?
+Ans - select ename from Employee where substr(designation,1,3)='man';
+
+WAQ)6. Display all the names whose name is having exactly 1 'L' ?
+Ans - select ename from Employee where (length(ename) -length(replace (ename,'L','')))=1;
+
+WAQ)7. Display dept names which are having letter 'O' ?
+Ans -  select deptname from dept where instr(dname,'O')>0;
+
+WAQ) 8. Display the output as shown below,
+   Scott working as a clerk earns 3000 in dept 20
+Ans - select concat(ename,'work as a')||concat(designation,'earns')||concat(salary,'in')|| concat('dept',deptno)AS text from Employee
+
+WAQ)9. Calculate number of L in string 'HELLLLL' ?
+Ans - select length('HELLLLL')-length(replace('HELLLLL','L','')) as "number of L";
+
+WAQ)10. Display all the employees whose job has a string 'MAN' ?
+Ans -select ename from Employee where substr(designation,1,3)='MAN';
+
+WAQ)11. Display all the employees whose job starts with string 'MAN' ?
+Ans -select ename from Employee where left(designation,3)='MAN';
+
+WAQ)12. Display all the employees whose job ends with string 'MAN' ?
+Ans - select ename from Employee where right(designation,3)='MAN';
+
+WAQ)13. Display first 3 characters of ename in lower case and rest everything in upper case ?
+        If ename is 'QSPIDERS' then display  this as ‘qspIDERS’
+Ans - select lower(substr(ename,1,3)) || upper(substr(ename,4)) from Employee;
+
+WAQ)14. Display the result from emp table as below.
+
+SMITH is a CLERK and gets salary 2000 
+Here SMITH is ename column, CLERK is JOB and 2000 is SAL column and rest everything is literal strings.
+Ans- select concat(upper(ename),'is a')||concat(upper(designation),'and get salary')||concat(salary) from Employee;
+
+WAQ)15. list the employees hired on a Wednesday ?
+Ans - select * from Employee where to_char(hiredate,'dy')='wed';
+
+WAQ)16.list the employees hired on a leap year ?
+Ans - select * from Employee where (cast(to_char(hiredate,'YYYY')as integer)%4=0 and (cast(to_char(hiredate,'YYYY')as integer)%100!=0;) or (cast(to_char(hiredate,'YYYY')as integer)%400=0; 
+
+WAQ)17.list the employees hired on a Sunday in the month of may ?
+Ans - select * from Employee where to_char(hiredate,'DY')='SUN' and to_char(hiredate,'MON')='MAY';
