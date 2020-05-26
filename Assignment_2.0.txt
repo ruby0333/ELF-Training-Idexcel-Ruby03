@@ -1,0 +1,70 @@
+
+ASSIGNMENT FOR GROUP BY AND HAVING CLAUSE
+-------------------------------------------------
+
+QUES)1.	WRITE A QUERY TO DISPLAY TOTAL SALARY NEEDED TO PAY EACH JOB IN EMPLOYEE TABLE ?
+Ans -  select sum(salary) as Total_sal ,desgnation from Employee group by salary,designation;
+
+QUES)2.	WRITE A QUERY TO DISPLAY THE HIRE DATE ON WHICH AT LEAST 3 EMPLOYEES WHERE HIRED ?
+Ans - select hiredate from Employee group by hiredate having count(*)>=3;
+
+QUES)3.	WRITE A QUERY TO DISPLAY THE DEPARTMENT NUMBER WHICH HAS MORE THAN 2 EMPLOYEES AND THE TOTAL 
+        AMOUNT REQUIRED TO PAY THE MONTHLY SALARIES OF ALL THE EMPLOYEES IN THAT DEPARTMENT 
+        SHOULD BE MORE THAN 9000.
+Ans - select deptno from Employee group by deptno having count(*)>2 and sum(salary)>9000;
+
+QUES)4.	WRITE A QUERY TO DISPLAY NUMBER OF EMPLOYEES WORKING IN EACH DEPARTMENT AND ITS’ 
+        AVERAGE SALARY BY EXCLUDING ALL THE EMPLOYEES WHOSE SALARY IS LESS THAN THEIR COMMISSION.
+Ans -  select count(*),deptno from Employee where salary<commission group by deptno having avg(salary);
+
+QUES)5.	WRITE A QUERY TO DISPLAY THE SALARIES WHICH HAS REPETITIONS IN THE SAL COLUMN OF EMPLOYEE TABLE.
+Ans -  select salary from Employee group by salary having count(*)>1;
+
+QUES)6.	WRITE A QUERY TO DISPLAY THE EMPLOYEE NAME ONLY IF MORE THAN ONE PERSON IN THE EMPLOYEES OF THE 
+        COMPANY HAS SAME NAME.
+Ans - select ename from Employee group by ename having count(*)>1;
+
+QUES)7.	WRITE A QUERY TO DISPLAY THE DEPARTMENT NUMBER WHOSE AVERAGE SALARY IS BETWEEN 2500 AND 3000?
+Ans - select deptno from Employee group by deptno having avg(salary) between 10000 and 28000;
+
+QUES)8*.WRITE A QUERY TO DISPLAY THE NUMBER OF EMPLOYEES ONLY IF THEY ARE WORKING AS MANAGER OR ANALYST 
+        AND THEIR ANNUAL SAL SHOULD END WITH A ZERO, IN EACH DEPARTMENT ?
+Ans - select count(*) from Employee where designation IN('Manager','Tester') and 12*salary as annual_sal like '%0';
+      group by deptno;
+
+QUES)9.	WRITE A QUERY TO DISPLAY NO OF CLERKS WORKING IN EACH DEPARTMENT ?
+Ans - select count(*),deptno from Employee where designation='Clerk' group by deptno ;
+
+QUES)10. WRITE A QUERY TO DISPLAY HIGHEST SALARY GIVEN TO A MANAGER   IN EACH DEPARTMENT ?
+Ans - select max(salary),deptno from Employee Where designation='Manager' group by deptno;
+
+QUES)11. WRITE A QUERY TO DISPLAY NO OF TIMES THE SALARIES HAVE REPEATED IN THE EMP TABLE ?
+Ans -  select salary,deptno from Employee group by salary,deptno having count(*)>1;
+
+QUES)12.WRITE A QUERY TO DISPLAY DEPTNO AND MUNBER OF EMPLOYEES WHORKING IN EACH DEPARTMENT EXCEPT FOR THOSE WORKING IN DEPT 10 ?
+Ans -  select deptno,count(*) from Employee where deptno!=10 group by deptno;
+
+QUES)13.WAQTD NUMBER OF EMPLOYEES GETTING COMISSION IN EACH DEPARTMENT ?
+Ans - select count(*),comission,deptno from Employee group by deptno,comission;
+
+QUES)14.WAQTD NUMBER OF EMPLOYEES GETTING SALARY MORE THAN 1600 EXCLUDING ALL THE MANAGERS IN EACH DEPARTEMNT ?
+Ans - select count(*),salary from Employee where salary>1600 and designation='Manager' group by salary;
+
+QUES)15.WAQTD AVERAGE SALARY NEEDED TO PAY ALL THE EMPLOYEES WHO ARE HAVING A REPORTING MANAGER IN EACH JOB ?
+Ans - select avg(salary),designation from Employee where reportmgr is not null group by designation;
+
+QUES)16.WAQTD NUMBER OF EMPLOYEES HIRED INTO THE SAME DEPARTMENT ON THE SAME DAY ?
+Ans - select count(*),hiredate,deptno from Employee group by hiredate,deptno having count(*)>1;
+
+QUES)17.WAQTD NUMBER OF EMPLOYEES GETTING THE SAME SALARY , WORKING IN THE SAME DEPARTMENT ?
+Ans - select count(*),salary,deptno from Employee group by deptno, salary;
+
+QUES)18.WAQTD MAXIMUM SALARY GIVEN IN EACH DESIGNATION EXCLUDING THOSE WHOS NAME STARTS WITH ‘K’ ?
+Ans - select max(salary),designation from Employee where designation not like 'K%' group by designation;
+
+QUES)19.WAQTD NUMBER OF EMPLOYEES REPORTING TO 7839 IN EACH DEPT ?
+Ans - select count(*),deptno from Employee where empid=7839 group by deptno;
+
+QUES)20.WAQTD NUMBER OF EMPLOYEE NAMES STARTING WITH AN VOWEL IN EACH DEPARTMENT ?
+Ans - select count(*),deptno from Employee where ename like 'A%' or ename like 'O%' or ename like 'E%' or  ename like 'I%' or  ename like 'U%' group by deptno;
+==========================================================================================================
