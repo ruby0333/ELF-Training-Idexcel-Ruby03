@@ -1,11 +1,11 @@
-                                                  POSTGRE SQL
-                                             -----------------------
+                                                                  POSTGRE SQL
+                                                            -----------------------
 What is data ?
 Ans - Raw facts that define the attributes of an entity.
 
 Application
 --------------
-1.Do specific task have dedicated functinally.
+1. Do specific task have dedicated functinally.
 2. Has its own file extension.
 3. Platform independent
 4. Collection of Packages.
@@ -28,7 +28,7 @@ NOTE : Network dbms,hierachical dbms,object oriented dbms, are used before 1970.
 RELATIONAL DBMS
 -------------------
 RDBMS : A DBMS which organize and store the data by following Relatinal-Model is known as RDBMS.
-        This defines database relational in the from tables, also known as relations.
+        This defines database relational in the form of tables, also known as relations.
 
 R-MODEL : DBMS which follows the E.F Codd rules known as R-Model.
 
@@ -97,7 +97,7 @@ CHARACTERICS
 
 DATA TYPE 
 -----------------
-1. Numeric : * Date -> YYYY-MM-DD
+1. Numeric : * Date -> YYYY-MM-DD (using single quotes)
              * Time -> HH:MI:SS 
              * DATE TIME -> YYYY-MM-DD HH:MI:SS
 
@@ -147,8 +147,8 @@ TCL :Transactional control language
      *Save point
 DQL :Data query language
 
-DDL -
-----------
+DDL - DATA DEFINATION LANGUAGE
+----------------------------------------------
 
 Syntax for creating database : 
 
@@ -157,23 +157,27 @@ CREATE DATABASE database_name
 *\l ->To check how many database present in DB.
 *\c database_name; -> To connect the database which we want.
 *\d -> To check any data present in database.
+*\d table_name -> To check table structure.
 
 CREATE TABLE :
-
+-----------------------
 Syntax -CREATE TABLE table_name(column_name data_type constraint);
 Example - create table Person(id int,name varchar(50),email varchar(200));
 
 *\d Person -> To check data of table structure.
 
 ALTER : ADD
+---------------------
 Syntax - ALTER table_name ADD column_name;
 Example -alter Person add column age int;
 
-DROP :
+DROP : (COLUMN)
+---------------------
 Syntax - ALTER table_name drop column_name;
 Example -alter Person drop column age ;
 
 RENAME:
+--------------------
 Syntax - ALTER table_name RENAME column_old_name to new_name;
 Example -alter Person rename name to ename;
 
@@ -185,12 +189,21 @@ syntax-ALTER database_name to new_database_name;
 Example - alter database test_db to test;
 
 DROP TABLE :
+---------------------
 Syntax - DROP TABLE table_name;
 Example - drop table emp;  
 
+TRUNCATE 
+----------------------
+By  using truncate command we can remove all the data from table but table structure will remain same.
+it is a permanent option.
+Syntax - TRUNCATE TABLE table_name;
+
 Salary --- double precision
 =============================================================================================================================
-DQL--Data Query Language
+
+DQL--DATA QUERY LANGUAGE
+------------------------------------------------------
 
 There are different ways to retrive the data from table
 1.Projection:         
@@ -539,10 +552,10 @@ QUES.17) DISPLAY ALL THE EMPLOYEE WHO ARE ‘SALESMAN’S HAVING ‘E’ AS THE LAST BUT
 Ans - select * from Employee designation='Salesman' and ename like '%E' and salary like '____';
 
 QUES.18) DISPLAY ALL THE EMPLOYEE WHO ARE JOINED AFTER YEAR 81 ?
-Ans - select * from Employee where hiredate like '__81-__-__';
+Ans - select * from Employee where hiredate like '__81-12-31';
 
 QUES.19) DISPLAY ALL THE EMPLOYEE WHO ARE JOINED IN FEB ?
-Ans - select * from Employee where cast(hiredate as varchar) like '____-12-__';
+Ans - select * from Employee where cast(hiredate as varchar) like '____-02-__';
 
 QUES.20) LIST THE EMPLOYEES WHO ARE NOT WORKING AS MANAGERS AND CLERKS IN DEPT 10 AND 20 WITH A SALARY IN THE RANGE OF 1000 TO 3000?
 Ans - select * from Employee where designation !='HR' and designation !='Clerk' and deptno IN(10,20) and salary between
@@ -577,7 +590,7 @@ Ans -select * from Employee where ename like '%L%L%';
 
 QUES.30)WAQTD NAME OF THE EMPLOYEES WHOS NAME STARTS WITH A ‘VOWEL’ ?
 Ans - select * from Employee where ename like 'A%' or ename like 'O%' or ename like 'E%' or  ename like 'I%' or  ename like 'U%';
-5
+
 FUNCTION
 ----------------------------
 Function is a block of code which is use to perform a specific task.
@@ -634,7 +647,7 @@ Ans - select sum(salary) total_salary,avg(salary) avg_sal ,count(salary) count_s
 ==============================================================================================================
 Date-14-05-2020
 
-ORDER CLAUSE
+ORDER BY CLAUSE
 ------------------------------
 *The ORDER BY keyboard used to sort the result-set in ascending or descending order.
 *The ORDER BY keyword sorts the record in ascending order by default.To sort the records in
@@ -644,7 +657,7 @@ Syntax - SELECT column1,column2/* FROM table_name
          ORDER BY column1 ASC|DESC;
 
 NOTE : 1.by default order will be sorted in ASC order. and order by clause is alwyas written in last of the query.
-       2.order by clause always execute after where clause.
+       2.order by clause always execute after select clause.
        3.If the group by clause is used then order by clause in multirow.
 
 ORDER OF EXECUTION :
@@ -667,6 +680,8 @@ Ans - select ename, designation from Employee where deptno IN(10,20,40) order by
 
 GROUP BY CLAUSE :
 ---------------------------------
+Syntax - SELECT * FROM table_name WHERE (condition) GROUP BY column_name ;
+
 ORDER OF execution :
 *from
 *where
@@ -697,9 +712,711 @@ ORDER OF EXECUTION
 -----------------------
 *from
 *where
-*select
+*group by
 *having
+*select
+*order by
+
          
 
 QUES)WAQ to display  deptno which have atleast two clerk only.
 Ans-select deptno from Employee where designation='Clerk' group by deptno having count(*)=2;
+
+
+ASSIGNMENT FOR FUNCTION
+---------------------------------
+
+WAQ)1.List employees whose name having 4 characters ?
+Ans - select ename from Employee where length(ename)=4; 
+
+WAQ)2. List employees whose job is having 7 characters ?
+Ans - select * from Employee where length(designation)=7;
+
+WAQ)3. Find out how many times letter 'S' occurs in 'qspiders' ?
+Ans - select length('qspiders')-length(replace('qspiders','s',''));
+
+WAQ)4. List the employees whose job is having last 3 characters as 'man' ?
+Ans - select ename from Employee where right(designation,3)='man';
+
+WAQ)5. List employees whose job is having first 3 characters as 'man' ?
+Ans - select ename from Employee where substr(designation,1,3)='man';
+
+WAQ)6. Display all the names whose name is having exactly 1 'L' ?
+Ans - select ename from Employee where (length(ename) -length(replace (ename,'L','')))=1;
+
+WAQ)7. Display dept names which are having letter 'O' ?
+Ans -  select deptname from dept where instr(dname,'O')>0;
+
+WAQ) 8. Display the output as shown below,
+   Scott working as a clerk earns 3000 in dept 20
+Ans - select concat(ename,'work as a')||concat(designation,'earns')||concat(salary,'in')|| concat('dept',deptno)AS text from Employee
+
+WAQ)9. Calculate number of L in string 'HELLLLL' ?
+Ans - select length('HELLLLL')-length(replace('HELLLLL','L','')) as "number of L";
+
+WAQ)10. Display all the employees whose job has a string 'MAN' ?
+Ans -select ename from Employee where substr(designation,1,3)='MAN';
+
+WAQ)11. Display all the employees whose job starts with string 'MAN' ?
+Ans -select ename from Employee where left(designation,3)='MAN';
+
+WAQ)12. Display all the employees whose job ends with string 'MAN' ?
+Ans - select ename from Employee where right(designation,3)='MAN';
+
+WAQ)13. Display first 3 characters of ename in lower case and rest everything in upper case ?
+        If ename is 'QSPIDERS' then display  this as ‘qspIDERS’
+Ans - select lower(substr(ename,1,3)) || upper(substr(ename,4)) from Employee;
+
+WAQ)14. Display the result from emp table as below.
+
+SMITH is a CLERK and gets salary 2000 
+Here SMITH is ename column, CLERK is JOB and 2000 is SAL column and rest everything is literal strings.
+Ans- select concat(upper(ename),'is a')||concat(upper(designation),'and get salary')||concat(salary) from Employee;
+
+WAQ)15. list the employees hired on a Wednesday ?
+Ans - select * from Employee where to_char(hiredate,'dy')='wed';
+
+WAQ)16.list the employees hired on a leap year ?
+Ans - select * from Employee where (cast(to_char(hiredate,'YYYY')as integer)%4=0 and (cast(to_char(hiredate,'YYYY')as integer)%100!=0;) or (cast(to_char(hiredate,'YYYY')as integer)%400=0; 
+
+WAQ)17.list the employees hired on a Sunday in the month of may ?
+Ans - select * from Employee where to_char(hiredate,'DY')='SUN' and to_char(hiredate,'MON')='MAY';
+
+==============================================================================================================================
+Date : 18-05-2020
+
+QUES)WAQ to display deptno which have total salary 10000 in each dept.
+Ans select deptno from Employee  group by deptno having sum(salary)>10000;
+
+QUES)WAQ to display deptno which have atleast two emp hiredate into its on the same date?
+Ans - select deptno from Employee group by deptno, hiredate having count(hiredate)>=2;
+    or  select deptno from Employee group by deptno, hiredate having count(*)>1;
+
+QUES)WAQ to display deptno and avg salary of all the dept whose avg salary is > 15000 by execluding the emp whose names begans with R?
+Ans - select deptno,avg(salary) from Employee group by deptno having avg(salary)>15000 and ename not like 'R%'; 
+
+
+NOTE - department
+       deptno(pk) int 10 20 30 40 50 60
+       dname varchar(200) (not null) (HR,admin,research,development,sales,testing)
+       location varchar (200) (city) atleast insert 6 recrod.And create table.
+
+Table for Department:
+-----------------------------
+create table Department (deptno integer primary key,dname varchar(200) not null,location varchar(200));
+1.insert into Department (deptno,dname,location) values(10,'Sales','Jamshedpur');
+2 insert into Department values(20,'Testing','Pune');
+3.insert into Department values(30,'Development','Bangalore');
+4.insert into Department values(40,'HR','Mumbai');
+5.insert into Department values(50,'Research','Delhi');
+6.insert into Department values(60,'Admin','Kolkata');
+===============================================================================================================
+DATE -19-05-2020
+
+SUBQUERY
+------------------------------
+QUES)What is Subqueries ?
+Ans - * A query written inside another query is known as "Subquery".
+      * Subquery also known as "Inner Query" or "Nested Query".
+      * Subqueries are an alternative way of returning data from multiple tables.
+      * Subqueries must be enclosed within parentheses
+       
+Syntax  - SELECT * FROM table_name WHERE Ccolumn_name Operator(select */column_name from table_name condition)
+                       ( OUTER QUERY )                                    ( INNER QUERY )
+
+->Subquery can be classified into two categories
+  *SINGLE ROW SUBQUERY
+  *MULTIROW SUBQUERY
+
+SINGLE ROW SUBQUERIES
+----------------------------------
+A single row subquery returns zero or one row to the outer SQL statement.
+We use comparision/relational operator for singlerow subquery to get only one ouput.
+
+Syntax - SELECT column1,column2,...FROM table_name WHERE column1 OPERATOR
+         (SELECT column FROM table_name WHERE expr1=value)
+
+MULTIROW SUBQURIES
+-----------------------------
+Multirow sub can return one or more number of rows.(inner query can return any number of rows).
+OPERATOR -IN,OR,ANY
+
+Syntax - SELECT column1,column2.....FROM table WHERE column1 OPERATOR
+        (SELECT column FROM table WHERE expr1=value);
+
+QUES)WAQ to display name of all the emp who were hired after abhijeet.
+Ans select ename from Employee where hiredate > (select hiredate from Employee where ename='Abhijeet'); 
+
+QUES)WAQ to display name of all the whose working for reserch department?
+ select ename from Employee where deptno =(select deptno from Department where dname='reaserch');
+
+QUES)WAQ to display name of employee whose working in location which has atleast 1 'A'?
+Ans-select ename from Employee where  deptno IN (select deptno from Department where location like '%A%)
+
+QUES)WAQ to display a 2nd maximum salary ?  
+Ans select max(salary) from Employee where salary <(select max(salary) from Employee);
+
+QUES)WAQ to display dname which has atleast two clerk ?
+Ans - select dname from Department where deptno IN(select deptno from Employee where designation='Clerk' group by deptno having count(*)>=2);
+
+QUES)WAQ to display the 3rd max salary ?
+Ans - select max(salary) from Employee where salary<(select max(salary) from Employee where salary <(select max(salary) from Employee));
+
+QUES)WAQ to dispaly the name of the emp who were hired before rahul and there salary is greater then rohit ?
+Ans - select ename from Employee where hiredate < (select hiredate from Employee where ename='Abhijeet') and salary >(select salary from Employee where ename='Nidhi');
+
+ALL OPERATOR
+----------------------------
+ALL operator is used to select all tuples of SELECT STATEMENT. It is also used to compare a value to every value in another value set or result from a subquery.
+The ALL operator returns TRUE iff all of the subqueries values meet the condition. The ALL must be preceded by comparison operators and evaluates true if all of the subqueries values meet the condition.
+ALL is used with SELECT, WHERE, HAVING statement.
+
+ANY OPERATOR
+----------------------
+ANY compares a value to each value in a list or results from a query and evaluates to true if the result of an inner query contains at least one row.
+
+ANY return true if any of the subqueries values meet the condition.
+ANY must be preceded by comparison operators. 
+================================================================================================
+DATE - 21-05-2020
+
+QUES) What is join ?
+Ans  - join is used to fetch a data from two or multiple table.
+
+TYPES OF JOIN
+--------------------
+1. CROSS JOIN
+2. INNER JOIN
+3. OUTER JOIN 
+4. SELF JOIN
+5. NATURAL JOIN
+
+CROSS JOIN (Cartesion join)
+------------------------------
+T1 cross join T2
+left table merge with a right table is known as cross join.
+
+SELECT */Column_name from table_1 cross join table_2;
+
+select * from Employee cross join Department;
+
+INNER JOIN
+----------------------------------
+When we are joining two table with the help of condition is known as inner join.
+inner join is a subset of cross join.
+inner join retuen common values only.
+
+T1A1=T2A2
+
+Syntax - SELECT */column_name FROM table_1 INNER JOIN table_2 ON JOIN CONDITION;
+
+select * from Employee e inner join Department d on e.deptno=d.deptno;
+
+QUES)WAQ to display dname and location of all the emp whose salary is > = 40000;
+Ans - select dname, location from Employee  as e inner join Department as d on e.deptno=d.deptno and salary>=15000;
+
+QUES)WAQ to display ename and all the detail of the department if emp where hired after 2015 and working in DELHI OR BANGALORE?
+Ans - 
+
+QUES)WAQ to display ename dname if the emp name start with S or P and there dname having atleast 1 'E' in it?
+=======================================================================================================
+
+ASSIGNMENT FOR GROUP BY AND HAVING CLAUSE
+-------------------------------------------------
+QUES)1.	WRITE A QUERY TO DISPLAY TOTAL SALARY NEEDED TO PAY EACH JOB IN EMPLOYEE TABLE ?
+Ans -  select sum(salary) as Total_sal ,desgnation from Employee group by salary,designation;
+
+QUES)2.	WRITE A QUERY TO DISPLAY THE HIRE DATE ON WHICH AT LEAST 3 EMPLOYEES WHERE HIRED ?
+Ans - select hiredate from Employee group by hiredate having count(*)>=3;
+
+QUES)3.	WRITE A QUERY TO DISPLAY THE DEPARTMENT NUMBER WHICH HAS MORE THAN 2 EMPLOYEES AND THE TOTAL 
+        AMOUNT REQUIRED TO PAY THE MONTHLY SALARIES OF ALL THE EMPLOYEES IN THAT DEPARTMENT 
+        SHOULD BE MORE THAN 9000.
+Ans - select deptno from Employee group by deptno having count(*)>2 and sum(salary)>9000;
+
+QUES)4.	WRITE A QUERY TO DISPLAY NUMBER OF EMPLOYEES WORKING IN EACH DEPARTMENT AND ITS’ 
+        AVERAGE SALARY BY EXCLUDING ALL THE EMPLOYEES WHOSE SALARY IS LESS THAN THEIR COMMISSION.
+Ans -  select count(*),deptno from Employee where salary<commission group by deptno having avg(salary);
+
+QUES)5.	WRITE A QUERY TO DISPLAY THE SALARIES WHICH HAS REPETITIONS IN THE SAL COLUMN OF EMPLOYEE TABLE.
+Ans -  select salary from Employee group by salary having count(*)>1;
+
+QUES)6.	WRITE A QUERY TO DISPLAY THE EMPLOYEE NAME ONLY IF MORE THAN ONE PERSON IN THE EMPLOYEES OF THE 
+        COMPANY HAS SAME NAME.
+Ans - select ename from Employee group by ename having count(*)>1;
+
+QUES)7.	WRITE A QUERY TO DISPLAY THE DEPARTMENT NUMBER WHOSE AVERAGE SALARY IS BETWEEN 2500 AND 3000?
+Ans - select deptno from Employee group by deptno having avg(salary) between 10000 and 28000;
+
+QUES)8*.WRITE A QUERY TO DISPLAY THE NUMBER OF EMPLOYEES ONLY IF THEY ARE WORKING AS MANAGER OR ANALYST 
+        AND THEIR ANNUAL SAL SHOULD END WITH A ZERO, IN EACH DEPARTMENT ?
+Ans - select count(*) from Employee where designation IN('Manager','Tester') and 12*salary as annual_sal like '%0';
+      group by deptno;
+
+QUES)9.	WRITE A QUERY TO DISPLAY NO OF CLERKS WORKING IN EACH DEPARTMENT ?
+Ans - select count(*),deptno from Employee where designation='Clerk' group by deptno ;
+
+QUES)10. WRITE A QUERY TO DISPLAY HIGHEST SALARY GIVEN TO A MANAGER   IN EACH DEPARTMENT ?
+Ans - select max(salary),deptno from Employee Where designation='Manager' group by deptno;
+
+QUES)11. WRITE A QUERY TO DISPLAY NO OF TIMES THE SALARIES HAVE REPEATED IN THE EMP TABLE ?
+Ans -  select salary,deptno from Employee group by salary,deptno having count(*)>1;
+
+QUES)12.WRITE A QUERY TO DISPLAY DEPTNO AND MUNBER OF EMPLOYEES WHORKING IN EACH DEPARTMENT EXCEPT FOR THOSE WORKING IN DEPT 10 ?
+Ans -  select deptno,count(*) from Employee where deptno!=10 group by deptno;
+
+QUES)13.WAQTD NUMBER OF EMPLOYEES GETTING COMISSION IN EACH DEPARTMENT ?
+Ans - select count(*),comission,deptno from Employee group by deptno,comission;
+
+QUES)14.WAQTD NUMBER OF EMPLOYEES GETTING SALARY MORE THAN 1600 EXCLUDING ALL THE MANAGERS IN EACH DEPARTEMNT ?
+Ans - select count(*),salary from Employee where salary>1600 and designation='Manager' group by salary;
+
+QUES)15.WAQTD AVERAGE SALARY NEEDED TO PAY ALL THE EMPLOYEES WHO ARE HAVING A REPORTING MANAGER IN EACH JOB ?
+Ans - select avg(salary),designation from Employee where reportmgr is not null group by designation;
+
+QUES)16.WAQTD NUMBER OF EMPLOYEES HIRED INTO THE SAME DEPARTMENT ON THE SAME DAY ?
+Ans - select count(*),hiredate,deptno from Employee group by hiredate,deptno having count(*)>1;
+
+QUES)17.WAQTD NUMBER OF EMPLOYEES GETTING THE SAME SALARY , WORKING IN THE SAME DEPARTMENT ?
+Ans - select count(*),salary,deptno from Employee group by deptno, salary;
+
+QUES)18.WAQTD MAXIMUM SALARY GIVEN IN EACH DESIGNATION EXCLUDING THOSE WHOS NAME STARTS WITH ‘K’ ?
+Ans - select max(salary),designation from Employee where designation not like 'K%' group by designation;
+
+QUES)19.WAQTD NUMBER OF EMPLOYEES REPORTING TO 7839 IN EACH DEPT ?
+Ans - select count(*),deptno from Employee where empid=7839 group by deptno;
+
+QUES)20.WAQTD NUMBER OF EMPLOYEE NAMES STARTING WITH AN VOWEL IN EACH DEPARTMENT ?
+Ans - select count(*),deptno from Employee where ename like 'A%' or ename like 'O%' or ename like 'E%' or  ename like 'I%' or  ename like 'U%' group by deptno;
+======================================================================================================
+
+ASSIGNMENT FOR SUBQUERIES
+-------------------------------------
+QUES)1.DISPLAY ALL THE EMPLOYEES WHOSE DEPARTMET NAMES ENDING 'S' ?
+Ans - select * from Employee where deptno=(select deptno from Department where dname like '%s');
+
+QUES)2.QUERY TO DISPLAY THE EMPLOYEE NAMES WHO IS HAVING MAXIMUM SALARY IN DEPT NAME "ACCOUNTING" ?
+Ans - select ename from Employee where salary=(select max(salary) from Employee where deptno=(select deptno from Department where dname='ACCOUNTING')) and deptno=(select deptno from Department where dname='ACCOUNTING') ;
+
+QUES)3.QUERY TO DISPLAY THE DEPT NAME WHO IS HAVING HIGHEST COMMISSION ?
+Ans - select dname from Department where deptno=(select deptno from Employee where commission=(select max(commission) from Employee group by deptno) and commission is not null);
+
+QUES)4. QUERY TO DISPLAY THE EMPLOYEE NAMES WHOSE DEPARTMENT NAME HAS 2ND CHARACTER AS 'O'?
+Ans - select ename from Employee where deptno=(select deptno from Department where dname like '_o');
+
+QUES)5. QUERY TO DISPLAY ALL THE EMPLOYEES WHO’S DEPT NUMBER IS SAME AS SCOTT ?
+Ans -  select * from Employee where deptno=(select deptno from Employee where ename='SCOTT');
+
+QUES)6.QUERY TO DISPLAY ALL THE EMPLOYEES IN 'OPERATIONS AND ACCOUNTING' DEPT ?
+Ans - select * from Employee where deptno=All(select deptno from Department where dname='OPERATION' and dname='ACCOUNTING');
+
+QUES)7.LIST THE EMPLOYEES WHO HAS SALARY GREATER THAN MILLER ?
+Ans -  select * from Employee where salary>(select salary from Employee where ename='MILLER');
+
+QUES)8. LIST DEPARTMENT NAME HAVING ATLEAST 3 SALESMAN ?
+Ans -   select dname from Department where deptno=(select deptno from Employee group by deptno,designation having designation='Salesman' and count(deptno)>=3);
+
+QUES)9. DISPLAY THE DNAME OF AN EMPLOYEES WHO HAS  NO REPORTING MANAGER ?
+Ans - select dname from Department where deptno=(select deptno from Employee where reportmgr is null);
+
+QUES)10. LIST ALL THE EMPLOYEES WHO ARE REPORTING TO JONES MANAGER ?
+Ans - select ename from Employee where manager IN(select empid from Employee where ename='JONES');
+
+QUES)11. LIST EMPLOYEES FROM RESEARCH & ACCOUNTING HAVING ATLEAST 2 REPORTING ?
+Ans - select ename from Employee where deptno=all(select deptno from Department where dname='Testing' and dname='Sales' group by deptno having count(*)>=2);
+
+QUES)12. DISPLAY THE DEPARTNAME OF THE EMPLOYEE WHOSE NAME DOES NOT STARTS 
+         WITH S AND SALARY BETWEEN 1500 TO 3000 ?
+Ans -  select dname from Department where deptno=(select deptno from Employee where ename not like '%' and salary between 1500 and 25000 group by deptno;
+
+QUES)13.DISPLAY LOCATION OF EMPLOYEE WHOSE SALARY IS MINIMUM SALARY BUT SALARY IS GREATER THAN 2000 ?
+Ans - select location from Department where deptno=(select deptno,min(salary) from Employee where salary>2000 group by deptno); 
+
+QUES)17. DISPLAY ALL THE EMPLOYEES WHO IS HAVING LOCATION IS SAME AS ADAM'S MANAGER?
+Ans -select ename from Employee where deptno=all(select deptno from Department where location=all
+    (select location from Department where deptno=(select deptno from Employee where reportmgr=
+    (select reportmgr from Employee where ename='Nidhi')))); 
+==================================================================================================================================================
+
+OUTER JOIN
+-------------------------------------
+1. LEFT OUTER JOIN
+2. FULL OUTER JOIN
+3. RIGHT OUTER JOIN
+
+LEFT OUTER JOIN
+-----------------------------
+Syntax - SELECT */COLUMN_NAME FROM TABLE_1
+         LEFT JOIN TABLE_2 
+         ON Condition(T1.A1=T2.A2)
+
+RIGHT OUTER JOIN
+-------------------------------
+Syntax - SELECT */COLUMN_NAME FROM TABLE_1
+         RIGHT JOIN TABLE_2 
+         ON Condition(T1.A1=T2.A2)
+
+FULL OUTER JOIN
+-----------------------------------------
+Combination of left outer join and right outer join in klnowm as full outer join.
+
+Syntax- SELECT */COLUMN_NAME FROM TABLE_1 FULL JOIN TABLE_2
+        ON CONDITION(T1.A1=T2.A2)
+
+WAQ to diaplay a dname which dont have emp working on it?  
+Ans - select dname from Employee as e full join  Department as d on e.deptno=d.deptno; 
+
+WAQ  to obtained or ename whose not working for any department?
+Ans select ename from Employee as e left join Department as d on e.deptno=d.deptno where d.deptno is null;  
+
+NATURAL JOIN
+-----------------------------
+Syntax- SELECT*/COLUMN_NAME FROM TABLE_1 NATURAL JOIN TABLE_2;  
+
+We will get the common record from both the table and if there is not any common record it will get the cross join.
+NOTE -  we dont need a condition .
+=============================================================================================================================================
+
+SELF JOIN
+----------------------------------
+In self join only one table is there but for join we need a two table so we give alias name to fatch the data.
+Merging of one table is self join.
+
+Syntax - SELECT * FROM TABLE_1 JOIN TABLE_2 ON CONDITION;
+
+Ques)Assignment find out diff between drop ,delete,truncate?
+Ans - 
+
+SINGLE ROW FUNCTION
+-------------------------------------
+1.Character single row function:
+ * Case
+ * Character
+
+CASE :
+* upper()
+Example - select upper(ename) from Employee;
+
+* lower()
+Example - select lower(ename) from Employee;
+
+* initcap()
+Example - select initcap(ename) from Employee; 
+
+CHARACTER :
+  *length() -
+  Example : 1. select length('ruby');
+            2. select length(ename) from Employee;
+
+  *concat()- 
+  Example : 1. select concat('ruby','das');
+            2. select concat(ename,'das') from Employee;
+
+  *reverse()-
+  Example : 1. select reverse('ruby');
+            2. select reverse(ename) from Employee;
+
+  *substr() - (String,position,length)
+  Example : 1. select substr('postgresql',7); Ans - esql
+            2. select substr('postgresql',8); Ans - sql
+            3. select substr(designation,7,5) from Employee;
+
+  *replace() -
+  Example : 1. select replace('ruby','ub','oo');
+
+  *instr()- it is not in postgresql
+  *position('search string' in 'main string')
+  Example - 1. select position('es' in ename) from Employee;
+            2. select position('sql' in 'postgresql'); Ans- 8
+
+  *trim() - trim([leading(starting)\trailing(ending)\both]< remove string > from <main string>)
+  NOTE - but the both keyword is optional to trim both the side.
+  Example - 1. select trim(leading 'm' from 'madam'); Ans - adam
+            2. select trim(trailing 'm' from 'madam'); Ans - mada
+            3. select trim(both 'm' from 'madam'); Ans - ada
+            4. select trim('m' from 'madam'); Ans - ada
+  
+
+NUMBER SINGLE ROW FUNCTION
+---------------------------------
+mod() -
+Example : 1. select mod(10,5); Ans - 0
+          2. select mod(10,3); Ans - 1
+          3. select mod(salary,2) from Employee;
+
+power() -
+Example : 1. select power(3,2); Ans - 9
+     
+sqrt() - 
+Example : 1. select sqrt(3);  Ans - 1.732
+       
+round() - case1 : round(number,scale)
+                  round(6783.47) and having range if number after decimal between 0-4 will be taken as lower value
+                  but number after decimal between 5-9 will be taken as higher value .
+ 
+Example - select round(6783.47); Ans - 6783
+          select round(6783.67); Ans - 6784
+
+case2 : round(6789.45663,2)
+
+Example - select round(6789.45663,2); Ans - 
+
+case3 : round(6789.45663,-1)
+                  10 ->6780
+Example : select round(6789.45663,-1); Ans - 6780
+          select round(6789.45663,-2); Ans - 6700
+          select round(6789.45663,-3); Ans - 6000
+abs()-
+Example : select abs(-144); -> Ans - 144
+
+trunc() - it will alwys give u the lower value
+Example :select trunc(4.7); -> Ans - 4
+
+Ques)Assignment to find the substr from right side ?
+
+DATE AND TIME FUNCTION 
+---------------------------------
+
+AGE() - 
+QUES)find age ?
+select age('1994-03-09'); Ans 26
+
+QUES) how to find century ?
+Ans - select extract(century from timestamp '2020-12-15 13:13:23');
+
+QUES) how to find decade?
+Ans - select extract(decade from timestamp '2020-12-15');
+ 
+QUES) how to find day?
+Ans - select extract(day from timestamp '2020-12-15');
+
+QUES) How to find doy-day of the year?
+Ans - select extract(dow from timestamp '2020-05-29');
+
+QUES) how to find dow-day of the week?
+Ans - select extract(dow from timestamp '2020-05-29');
+
+dom-day of the month
+
+QUES) how to find week from a day ?
+Ans - select extract(week from timestamp '2020-05-29');
+
+QUES) how to find month from a day ?
+Ans - select extract(month from timestamp '2020-05-29');
+
+QUES) How to find hours from a day ?
+Ans - select extract(hours from timestamp '2020-12-15 13:13:23');
+
+QUES) how to find minutes?
+Ans - select extract(min from timestamp '2020-12-15 13:13:23');
+
+NOW FUNCTION
+----------------------
+QUES)How to find date and time without using timestamp?
+Ans - select now();
+
+QUES)how to find date ?
+Ans - select now()::date;
+
+Ques)How  to find time?
+Ans - select now()::time;
+==================================================================================================================================
+
+TCL - TRANSCATION CONTROL LANGUAGE
+--------------------------------------------------
+Trascation is a unit of work that performed againts a data base. or we are doing some changes into the data base.
+TCL It is used with DML command(update,insert,delete).
+
+TCL Command
+
+1.commit - It is used to make DML changes permanently
+2.rollback - it is like a undo operation. it take back as to previous commit.
+NOTE - We have to start with 'BEGIN' command and to finish use END command.
+3.savepoint - it is used to create multiple savepoint 
+
+
+PROPERTIES 
+----------------------
+1. Its is having ACID(atmoicity consistency isolation durability) properties. 
+
+Atomicity
+---------------
+All changes to data are performed as if they are a single operation. That is, all the changes are performed, or none of them are.
+For example, in an application that transfers funds from one account to another, the atomicity property ensures that, if a debit is made successfully from one account, the corresponding credit is made to the other account.
+
+Consistency
+-------------------
+Data is in a consistent state when a transaction starts and when it ends.
+For example, in an application that transfers funds from one account to another, the consistency property ensures that the total value of funds in both the accounts is the same at the start and end of each transaction.
+
+Isolation
+----------------------
+The intermediate state of a transaction is invisible to other transactions. As a result, transactions that run concurrently appear to be serialized.
+For example, in an application that transfers funds from one account to another, the isolation property ensures that another transaction sees the transferred funds in one account or the other, but not in both, nor in neither.
+
+Durability
+-------------------
+After a transaction successfully completes, changes to data persist and are not undone, even in the event of a system failure.
+For example, in an application that transfers funds from one account to another, the durability property ensures that the changes made to each account will not be reversed.
+
+
+
+NORMALIZATION(FD)
+---------------------------
+Attributes- which define data (properties).
+
+KEY Attributes - A key attribute is the unique characteristic of the entity. For ex. Name and hire date are attributes of the entity Employee.
+
+Non key attributes - apart from  key attributes we will get all  the record. 0r These are attributes other than candidate key attributes in a table. 
+                     For example Firstname is a non key attribute as it does not represent the 
+                     main characteristics of the entity. Required Attribute : A required 
+                     attribute is an attribute that must have a data value.
+
+Prime key attributes : we are specifing the attribute 
+
+Non Prime key attributes : 
+
+Composite primary key : combination of two or more column in which are help us to identify unique record .
+                       or the combination of two more attributes which determines a record uniquely is know as 
+                       "composite key attributes".
+
+Super Key - The set of all the key attributes of an entity is known as 'Super key'.
+
+Foreign Key - Foreign key is an attributes which actually access an attribute of another entity to represent
+              the relationship.
+
+==============================================================================================
+
+FUNCTIONAL DEPENDENCY
+------------------------------
+It is a relationship between attributes of the table dependent upon each other.
+it is help us to preventing data reducency and anamulancy.
+
+           R --> {X,Y} {empid,name}
+           X is determining Y                   empid is determining name 
+           Y is dependent on X                  name is dependent on empid
+
+TYPES OF FUNCTION DEPENDENCY
+-----------------------------------------
+Total FD - In a relation any one single key attributes determining all the attributes.
+        or If all the attribute of a relation a determine by a key attribute called as "Total
+           Functional Dependeny".  
+           that help us to identify a record.
+           All the attributes depends upon the single key attributes.
+ R-->{A,B,C,D}
+ A--->{B,C,D}
+ A-->{B}
+ A-->{C}
+ A-->{D}
+
+
+Partial FD - A relation is said to have partial functional dependency IF
+             It consist a composite key attribute.
+             There exist a dependency such that an attribute can be determine by another attribute,
+             which is part of composite key attribute.
+
+ R-->{A,B,C,D} => AB is a composite key attribute.
+ AB--->{D}
+ B--->{C}
+ AB--->{C,D}
+ 
+Transitive FD - When an indirect relationship causes functional dependency it is called Transitive Dependency.
+                A relation is said to have an transitive functional dependency.if
+1.There exist an relation such that an attribute is determine by a no key attribute which interm
+determined by a key attribute.{there exist a transitive closure}.
+
+If  P -> Q and Q -> R is true, then P-> R is a transitive dependency.
+
+=>To achieve 3NF, eliminate the Transitive Dependency.
+ 
+R-->{A,B,C,D}
+A-->{B}
+A-->{D}
+D-->{C}
+A--> {C}  (And A and C are TFD)
+
+REDUENCY -
+
+ANAMOLY - side effect of dml operation
+
+To over with this problem we come with normalization
+
+NORMALIZATION
+------------------------
+The process of the decomposing the table into smaller table in order to remove redundancy
+and anomalies  by identifying the dependencies is known as "Normalization".
+
+NOTE - Table are said to be normalized if is said to be 3NF.
+
+1NF - FIRST NORMAL FORM
+-----------------------------
+There should be no dupilcate row and every cell in a table should be atomic value.
+
+2NF - SECOND NORMAL FORM
+--------------------------------
+It should not have partial dependency(sholud not have composite key) and it should follow the 1NF form.
+
+3NF -THIRD NORMAL FORM
+---------------------------------
+The table should be in 2NF form and should not be in transitive FD.
+
+BCNF - Boyce-Codd NormalForm 
+------------------------------------------------------
+For a table to satisfy the Boyce-Codd normal form,it should satisfy the following two conditions :
+1. It should be in the 3NF.
+2And ,for any dependency A -> B,A should be a super key.
+
+4NF-FOURTH NORMAL FORM
+----------------------------------
+ For a table to satisfy the 4NF normal form,it should satisfy the following two conditions :
+1. It should be in the Boyce-Codd NormalForm.
+2. And the table should not have any multi-valued dependency.
+===============================================================================================================================================
+
+TABLE
+----------------
+create table Address_info (empid INTEGER REFERENCES Employee(empid),current_address varchar(200) not null,permanent_ddress  varchar(200));
+1.insert into Address_info (empid,current_address,permanent_ddress) values(10,'Aishwarya pg Marathalli Bangalore Pincode-560037','Qno-32 X-type Sidhgora Jamshedpur Pincode-831009');
+2.insert into Address_info values(13,'SLVR pg Whitefield Bangalore Pincode-560039','infosys phase-2 hinjewadi Pune Pincode-411002');
+3.insert into Address_info values(15,' info city road Patia Bhubaneswar Pincode-751003','Qno-24 X-type Baridih Jamshedpur Pincode-831008');
+2 insert into Address_info values(17,'THANE MAHARASHTRA Pincode-400603','PATNA BIHAR PINCode-800005');
+
+ON DELETING
+-------------------------
+ERROR - update or delete on table "employee" violates foreign key constrai
+        fo_empid_fkey" on table "address_info"
+DETAILS-Key (empid)=(10) is still referenced from table "address_info".
+
+ON INSERTING
+-------------------
+Error -  insert or update on table "address_info" violates foreign key constraint
+         ss_info_empid_fkey"
+DETAILS- Key (empid)=(50) is not present in table "employee".
+======================================================================================
+
+VIEW
+--------------------------
+Views in SQL are considered as a virtual table,that can be created on an existing table.
+A view is same as table it also contains row and columns.
+A view can either have specific rows based on certain condition or all the rows of a table.
+Any operation performed on view will be reflected on the base table.
+its a tempory.
+
+Syntax : CREATE VIEW view_name 
+         AS
+         SELECT * FROM TABLE_NAME WHERE CONDITION;
+
+QUES)To check records of the view ?
+
+Ans - SELECT * FROM VIEW_NAME;
+
+      DROP VIEW VIEW_NAME;
+
+STORED PROCEDURE
+------------------------------------
+CREATE[OR REPLACE] PROCEDURE_NAME(PARAMETER LIST)
+language language_name(like PLpgSQL/SQL)
+AS $$
+stored procedure body
+$$;
+
