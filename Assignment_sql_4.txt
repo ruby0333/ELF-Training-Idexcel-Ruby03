@@ -1,0 +1,100 @@
+
+ASSIGNMENT OF JOINS
+----------------------------
+QUES)1.	LIST ENAME, JOB, ANNUAL SAL, DEPTNO, DNAME WHO EARN 30000 PER YEAR AND WHO ARE NOT CLERKS ?
+Ans - select e.ename,e.designation,e.salary as annual_sal,e.deptno,d.dname from Employee e inner join Department d on e.deptno=d.deptno and 12*salary=30000 and designation!='Clerk';
+
+QUES)2.	 LIST OUT THE ALL EMPLOYEES BY NAME AND EMPLOYEE NUMBER ALONG WITH THEIR MANAGER'S NAME AND EMPLOYEE NUMBER ?
+Ans- select e.ename,e.empid,m.reportmgr from Employee as e join Employee as m on e.deptno=m.deptno where reportmgr is not null;
+
+QUES)3.	DISPLAY ENAME,DNAME EVEN IF THERE NO EMPLOYEES WORKING IN A PARTICULAR DEPARTMENT ?
+Ans -  select e.ename,d.dname from Employee e full join Department d on e.deptno=d.deptno;
+
+QUES)4.	DISPLAY THE DEPARTMENT NAME ALONG WITH TOTAL SALARY IN EACH DEPARTMENT ?
+Ans - select d.dname,sum(e.salary) from Employee e inner join Department d on e.deptno=d.deptno group by dname;
+
+QUES)5.	DISPLAY EMPLOYEE NAME AND DEPARTMENT NAME FOR EACH EMPLOYEE ?
+Ans - select e.ename,d.dname from Employee e inner join Department d on e.deptno=d.deptno;
+
+QUES)6.	DISPLAY LOCATION NAME OF THE EMPLOYEE WHO EARN COMMISSION ?
+Ans - select location from Employee e inner join Department d on e.deptno=d.deptno where commission is not null;
+
+QUES)7.	DISPLAY DEPT NAME OF THE EMPLOYEE WHO EARN MIN SALARY AND HAVE NO REPORTING MANAGER ?
+Ans - select d.dname from Employee e inner join Department d on e.deptno=d.deptno  where reportmgr is not null and salary=(select min(salary) from Employee); 
+
+QUES)8.	DISPLAY DEPT NAME,LOC OF ALL THE EMPLOYEES WHO ARE REPORTING TO SMITH ?
+Ans - select d.dname,d.location,e.ename,m.ename 
+      From Employee e 
+      inner join Department d on e.deptno=d.deptno 
+      join Employee m on m.empid=e.reportmgr where m.ename='SMITH'; 
+
+QUES)9.	LIST ALL THE DEPT NAME AND LOCATION OF ALL THE SALESMAN MANAGER'S MANAGER ?
+Ans - select dname,location from Employee e inner join Department d on e.deptno=d.deptno 
+      join Employee m on empid=e
+
+QUES)10.LIST EMPLOYEES WHO ARE WORKING IN RESEARCH DEPT AND THEY ARE MANAGER ?
+Ans - select e.ename,d.dname from Employee e inner join Department d on e.deptno=d.deptno join Employee m on m.empid=e.reportmgr where d.dname='Research' and m.designation='Manager';
+
+QUES)11.DISPLAY THE NUMBER OF EMPLOYEES WHO ARE GETTING SALARY LESS THAN THE BLAKE'S MANAGER ?
+
+Ans - select count(*) from Employee e join Employee m on m.empid=e.reportmgr 
+      where e.salary<(select salary From Employee where reportmgr=(select reportmgr from Employee where ename='BLAKE'));
+
+QUES)12.LIST THE EMPLOYEE DEPTNAME AND LOCATION OF ALL THE EMPLOYEES WHO ARE ANALYST,REPORTING TO BLAKE ?
+Ans - select dname,location from Employee e inner join Department d on e.deptno=d.deptno join Employee m on m.empid=e.reportmgr 
+      where d.dname='ANALYST' or m.ename='Blake'; 
+
+QUES)13.DISPLAY THE EMPLOYEE NAMES,HIREDATE,COMM OF FORD'S MANAGER ?
+Ans - select e.ename,e.hiredate from Employee e join Employee m on m.empid=e.reportmgr where e.reportmgr=(select e.reportmgr from Employee where m.ename='Abhijeet');
+
+QUES)14.DISPLAY ENAME, DNAME OF ALL THE EMPLOYEES WHOSE SALARY LESS THAN AVG SAL OF DEPT 30 ?
+Ans - select ename,dname from Employee e inner join Department d on e.deptno=d.deptno where salary<(select avg(salary) from Employee where deptno=30);
+
+QUES)15.DISPLAY ENAME DNAME AND LOC OF ALL THE EMPLOYEES WHO ARE WORKING FOR JONES ?
+Ans - select d.dname,d.location,e.ename,
+      From Employee e 
+      inner join Department d on e.deptno=d.deptno 
+      join Employee m on m.empid=e.reportmgr where m.ename='JONES';
+
+QUES)16.DISPLAY ENAME DNAME OF ALL THE EMPLOYEES WHOSE NAME STARTS WITH S?
+Ans - select e.ename,d.dname from Employee inner join Department on e.deptno=d.deptno where ename like 'S%';
+
+QUES)17.LIST THE DNAME WHO ARE NOT HAVING ANY EMPLOYEE IN IT ?
+Ans - select d.dname,e.ename from Employee e inner join Department d on e.deptno=d.deptno where d.dname='IT' group by d.dame having count(*)<1;
+
+QUES)18.DISPLAY EMPLOYEE WHO ARE GETTING SAME COMMISSION ?
+Ans - select ename from Employee e join Employee m 
+      WHERE e.COMM=m.COMM AND e.empid<>m.empid AND
+      m.COMM IS NOT NULL AND e.COMM IS NOT NULL;
+
+QUES)19.DISPLAY ALL THE DEPT NAMES IRRESPECTIVE OF ANY EMPLOYEE WORKING IN IT OR NOT. IF AN EMPLOYEE IS WORKING DISPLAY HIS NAME?
+
+QUES)20.WRITE A QUERY TO DISPLAY EMPLOYEE NAME, JOB, DNAME, LOCATION OF ALL EMPLOYEES WHO ARE WORKING AS ACTUAL MANAGERS AND WORKS AT CHICAGO?
+Ans - select e.ename,e.designation,d.location from Employee e inner join Department d on e.deptno=d.deptno where empid IN(select e.reportmgr from Employee) and d.location='Bangalore';
+
+QUES)21.LIST THE DEPARTMENT NAMES IN WHICH THE EMPLOYEES ARE HIRED BETWEEN 1ST OF JAN 1981 AND 31ST DEC 1982 WITH SALARY MORE THAN 1800 ?
+Ans -select d.dname,e.hiredate from Employee e inner join Department d on e.deptno=d.deptno where e.hiredate between '1981-01-01' and '1982-12-31' and salary>1800;
+
+QUES)22.DISPLAY 2ND LEAST SALARY FROM EMPLOYEE TABLE ?
+Ans - select min(e.salary) from Employee e join Employee m on e.empid<>m.empid where e.salary <(select min(salary) from Employee);
+
+QUES)23.LIST THE EMPLOYEES WHOSE ANNUAL SALARY IS GREATER THAN 1500 AND WHO ARE JOINED BEFORE 1982 ONLY ?
+Ans - select ename,hiredate from Employee where salary*12>1500 and hiredate<'1981-01-01'; 
+
+QUES)24.DISPLAY DNAME, LOC, DEPTNO OF EMPLOYEES WHO HAS SAME REPORTING MANAGER ?
+Ans - select d.dname,d.location,e.deptno from Employee e inner join Department d on e.deptno=d.deptno where d.deptno IN(select e.deptno from Employee e  join Employee m on e.reportmgr=m.reportmgr where e.empid<>m.empid);
+
+QUES)25.DISPLAY EMPLOYEE NAME ALONG WITH THEIR MANAGER NAME ?
+Ans -select e.ename,m.ename From Employee e join Employee m on m.empid=e.reportmgr;
+
+26.DISPLAY EMPLOYEE NAME AND HIS DEPT NAME FOR THE EMPLOYEES WHOSE NAME STARTS WITH ‘S’ ?
+Ans -select e.ename,d.dname from Employee e inner join Department d on e.deptno=d.deptno where ename like 'S%';
+
+27.DISPLAY EMPLOYEES WHO ARE GETTING SAME SALARY ?
+Ans - select ename from Employee e join Employee m 
+      WHERE e.salary=m.salary AND e.empid<>m.empid AND
+      m.salary IS NOT NULL AND e.salary IS NOT NULL;
+
+
+
+ 
