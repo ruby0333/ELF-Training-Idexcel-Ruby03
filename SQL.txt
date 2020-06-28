@@ -1414,9 +1414,101 @@ Ans - SELECT * FROM VIEW_NAME;
 
 STORED PROCEDURE
 ------------------------------------
+A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over 
+again. So if you have an SQL query that you write over and over again, save it as a stored procedure, 
+and then just call it to execute it.(like function).
+
 CREATE[OR REPLACE] PROCEDURE_NAME(PARAMETER LIST)
 language language_name(like PLpgSQL/SQL)
 AS $$
 stored procedure body
 $$;
 
+CREATE TABLE
+----------------------
+ create table Person(pid int,name varchar(150));
+
+INSERT STORED PROCEDURE
+-----------------------------
+ create procedure insert1(integer,varchar)
+ language 'pgsql'
+ as $$
+ begin
+ insert into Person values($1,$2);
+ commit;
+ end;
+ $$;
+
+TO CHECK STORED PROCEDURE
+-----------------------------
+ \df
+
+HOW TO CALL STORED PROCEDURE
+------------------------------------
+ call insert(1,'rahul');
+
+NOTE -->We can write if and else also.
+================================================================================================
+FUNCTION
+-----------------------
+User defined function
+
+SYNTAX
+-------------------------
+create function function_name(Parameter)
+returns return datatype
+AS $$
+declare declaration;
+begin
+<function body>
+return{variable/value}
+end;
+$$
+language SQL/plpgsql;
+
+CREATE FUNCTION WITHOUT PASSING PARAMETERS
+--------------------------------------------------
+ create function totalfunction()
+ returns integer AS $$
+ declare noofrow integer;
+ begin
+ select count(*) into noofrow from Employee;
+ return noofrow;
+ end;
+ $$
+ language plpgsql;
+
+CALL FUNCTION
+-----------------------------------
+select totalfunction();
+
+CREATE FUNCTION WITH PASSING PARAMETERS
+---------------------------------------------------
+create function minmax(a integer,b integer,c integer,out max integer,out min integer)
+AS $$
+begin
+max=greatest(a,b,c);
+min=least(a,b,c);
+end;
+$$
+language plpgsql;
+
+HOW TO CALL FUNCTION
+-----------------------------------
+ select minmax(10,45,8);
+
+student
+-----------
+id-integer
+name-varchar
+sub1-integer
+sub2-integer
+sub3-integer
+
+create function minmax(integer,varchar(30),varchar(40),varchar(50),varchar(50))
+AS $$
+begin
+insert into Student values($1,$2,$3,$4,$5);
+end;
+$$
+language plpgsql;
