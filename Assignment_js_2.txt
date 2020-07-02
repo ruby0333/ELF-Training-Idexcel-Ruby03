@@ -1,0 +1,233 @@
+
+
+1.Ques)Write three functions to calculate the bitwise AND, bitwise OR and bitwise XOR of two numbers.
+Ans -function bitwiseAND(n1, n2) {
+	return n1&n2;	
+ }
+ bitwiseAND(6,9)
+
+function bitwiseOR(n1, n2) {
+	return n1|n2;
+}
+bitwiseOR(6,9)
+function bitwiseXOR(n1, n2) {
+return n1^n2;	
+}
+bitwiseXOR(6,9)
+
+2.Ques)Create a function that takes a number as an argument. Add up all the numbers from 1 to the number you passed to the function. 
+     For example, if the input is 4 then your function should return 10 because 1 + 2 + 3 + 4 = 10.
+
+Ans -function addUp(num) {
+	var sum=0;
+	for(var i=1;i<=num;i++){
+		sum=sum+i;
+	}
+	return sum;
+  }
+ console.log(addUp(7));
+
+3.Ques)
+Ans -const highestDigit = number => {
+  return Math.max(...[...String(number)].map(Number))
+};
+
+4.Ques) Which Function Returns the Larger Number?
+
+Ans - function whichIsLarger(f, g) {
+	if(f()>g()){
+		return 'f';
+	}
+	else if(g()>f()){
+		return 'g';
+	}
+	else if(g()==f()){
+		return 'neither'
+	}
+	
+}
+5.Ques)Create a function that returns true if the first array can be nested inside the second.
+Ans -function canNest(arr1, arr2) {
+	if (Math.min(...arr1)>Math.min(...arr2)&&Math.max(...arr1)<Math.max(...arr2)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+6.Ques)Find the Smallest and Biggest Numbers
+
+Ans - function minMax(arr) {
+  return [Math.min(...arr), Math.max(...arr)];
+}
+
+7.Ques)Create a function that takes a number (step) as an argument and returns the amount of
+     matchsticks in that step. See step 1, 2 and 3 in the image above.
+Ans - function matchHouses(step) {
+	if (step) {
+		return (step * 5) + 1;
+	}
+	
+	return 0;
+}
+
+8.Ques)Create a function that takes two strings as arguments and returns the number of times the first string (the single character) is found in the second string.
+Ans - function charCount(myChar, str) {
+	return [...str].filter(x => x===myChar).length;
+}
+
+9.Ques)Write a function that takes a positive integer and return its factorial.
+Ans - function factorial(z) {
+	return (z === 0 ? 1 : z * factorial(z - 1));
+}
+
+10.Ques)Create a function that takes a string and returns a string in which each character is repeated once.
+Ans -function doubleChar(str) {
+  return str.split('').map(x => x + x).join('');
+}
+
+============================================================================================================================================
+
+Medium
+--------------------------------------
+1.Ques)Create a function which returns the number of true values there are in an array.
+Ans - function countTrue(arr){
+	var count = 0;
+	for(var i = 0; i < arr.length; i++){
+		if(arr[i] === true){
+			count++;
+		}
+	}
+	return count;
+}
+
+2.Ques)Create a function that determines whether or not an array is a factor chain.
+Ans - function factorChain(arr) {
+	for (let i = 0; i < arr.length - 1; i++) {
+		if ((arr[i + 1] % arr[i]!=0))
+			return false
+	}
+	return true
+}
+
+3.Ques)Create a function that takes two numbers as arguments (num, length) and returns an array of multiples of num up to length.
+Ans - function arrayOfMultiples (num, length) {
+	var result = []
+    for (let i = 1; i <= length; i++) {
+        result.push(num*i)
+        
+    }
+    return result
+}
+
+4.Ques)Create a function that returns "even" if a number has an even number of factors and "odd" if a number has an odd number of factors.
+Ans - function factorGroup(num) {
+var sum =0;
+	for(var i=1; i<= num;i++){
+		if(num % i == 0){
+			sum+=1;
+		}
+	}
+
+if(sum %2 == 0){
+	return "even";
+} else {
+	return "odd";
+}
+}
+
+5.Ques)Create a function which validates whether a number n is exclusively within the bounds of lower and upper. Return false if n is not an integer.
+Ans - function intWithinBounds(n, lower, upper) {
+            if (lower == upper || !Number.isInteger(n)||(n==upper) ||(n>upper)) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+6.Ques)Create a function that squares every digit of a number.
+Ans - function squareDigits(n) {
+	return +[...String(n)].map(x => x*x).join('');
+}
+
+7.Ques)Create the function that takes an array with objects and returns the sum of people's budgets.
+Ans - function getBudgets(arr) {
+	s=0
+	for (let i=0; i <arr.length; i++) {
+		s+=arr[i].budget
+	}
+	return s
+}
+8.Ques)Create a function that takes two numbers and a mathematical operator + - / * and will perform a calculation with the given numbers.
+Ans - function calculator(num1, operator, num2) {
+	if(operator == '+') return num1+num2;
+	if(operator == '-') return num1-num2;
+	if(operator == '*') return num1*num2;
+	if(operator == '/' && num2 != 0) return num1/num2;
+	else return "Can't divide by 0!";
+}
+
+9.Ques)Create a function that takes a string and replaces the vowels with another character.
+Ans - function replaceVowel(word){
+return word.replace(/a/g,'1').replace('e','2').replace('i','3').replace('o','4').replace('u','5');
+}
+
+10.Ques)Write a function that converts an object into an array, where each element represents a key-value pair.
+Ans - function toArray(obj) {
+	return Object.keys(obj).map(x => [x, obj[x]]);
+}
+
+11.Ques)Write a function that converts an object into an array of keys and values.
+Ans - function objectToArray(obj) {
+	var r = [];
+  for (var i in obj) {
+		r.push([i, obj[i]]);
+	}
+	return r;
+}
+
+12.Ques)Create a function that concatenates n input arrays, where n is variable.
+Ans - function concat(...args) {
+	return [].concat(...args);
+}
+
+13.Ques)Write a function that gives the number of dots n with its corresponding triangle number of the sequence.
+Ans - function triangle(n) {
+	return n * (n + 1) / 2;
+}
+
+14.Ques)Convenience Store
+Ans - function changeEnough(change, amountDue) {
+	return (change[0]* 25 + change[1]*10 + change[2]*5 + change[3])/100 >= amountDue;
+}
+
+15.Ques)Create a function that takes an object and returns the keys and values as separate arrays.
+Ans -function keysAndValues(obj) {
+  var keys = Object.keys(obj);
+  return [keys, keys.map( key => obj[key] )];
+}
+
+16.Ques)Create a function that returns true if two arrays contain identical values, and false otherwise.
+Ans - function checkEquals(arr1, arr2) {
+	return arr1.toString() == arr2.toString();
+}
+
+17.Ques)Make a Circle with OOP
+Ans - class Circle {
+  constructor (radius) {
+    this.radius = radius;
+  }
+
+  getArea() {
+    return Math.PI * Math.pow(this.radius, 2);
+  }
+
+  getPerimeter() {
+    return 2 * Math.PI * this.radius;
+  }
+}
+
+18.)Write a function redundant that takes in a string str and returns a function that returns
+Ans-function redundant(str) {
+	return () => str;
+}
