@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/fontawesome-free-5.13.0-web/css/all.css">
+    <Style>
+       input[type="submit"]:hover{
+        color: white;
+        background-color:skyblue;
+       }
+        
+    </Style>
+</head>
+<body>
+<div class="container" style="width: 35%;margin-top: 30px; ">
+    
+      <div class="card body"  style="height:498px; border-radius: 5px solid grey;">
+        <form  name="MyForm" action="/form/maillogin.html" method="GET" onsubmit="validate();return false">
+               <div align="center" style="margin-top: 20px;">
+                <img src="googlelogo_color_112x36dp.png" alt="">
+                 <p style="margin-top: 10px;font-size: 25px;">Sign in</p>
+                 <p style="font-size: 18px;color:rgba(5, 3, 3, 0.815) ;">Use your Google Account</p>
+               </div>
+            <div class="form-group" style="margin-top: 45px;"align="center">
+               
+           <input type="text" class="form-control " id="user" name="user" placeholder="Enter your email" style="border: 1px solid rgba(128, 128, 128, 0.336);width: 350px;height: 45px;">
+          <label id="err" style="display: none;"> <label>
+          <hr>
+            
+                <a style="text-decoration: none;margin-right: 250px;" href=""><b>Forgot email</b></a>
+            </div>
+            <div style="margin-left: 50px; font-size: 14px;">
+                <p style="margin-top: 40px; margin-bottom:2px;">Not your computer? Use Guest mode to sign in privately.</p>
+                <a style="text-decoration: none;"  href=""><b>Learn more</b></a>
+            </div>
+            <div style="height: 2px;margin-top: 40px;">
+                <a style="margin-left:48px; text-decoration: none;" href=""><b>Create account</b></a>
+            </div>
+            <div style="margin-top: 2px;">
+               <input id="" type="submit" value="Next"style="width: 100px; border-radius: 5px;height: 40px;background-color: blue;border: 1px solid grey;color: white;margin-left: 296px"><br>
+            </div>
+            </form>
+        
+    </div>
+    </div>
+       
+        <div>
+          <select style="border: none; margin-top: 19px;margin-left: 454px;color: rgba(12, 9, 9, 0.815);font-size: 13px;" name="day" id="day">
+            <option  value="0" selected disabled>English (United states)</option>
+            <option value="1">English (kingdom)</option>
+            <option value="2">Hindi</option>
+            <option value="3">06</option>
+        </select>
+        
+            <a style="color: rgba(12, 9, 9, 0.815);font-size: 13px; margin-left: 160px; text-decoration: none;" href="">Help</a>
+            <a style="color: rgba(12, 9, 9, 0.815);font-size: 13px; margin-left: 5px; text-decoration: none;"href="">Privacy</a>
+            <a style="color: rgba(12, 9, 9, 0.815);font-size: 13px; margin-left: 5px; text-decoration: none;"href="">Terms</a>
+        </div>
+    
+      <script src="/maillogin.js"></script>
+    <script src="/js/jquery-3.5.0.js"></script>
+        <script src="/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
