@@ -6,8 +6,8 @@ if(current===null){
 
 }else{
     var userData = JSON.parse(current)
-    demo.innerText= userData.name + userData.Email
-    demo.innerText= userData.phoneno
+    demo.innerText= userData.name + "<br>"+ userData.email +"<br>"+userData.phoneno+"<br>"+userData.dob
+    
     
 }
 function logout(){

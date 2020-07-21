@@ -2,8 +2,9 @@ var user ={
     name : "ruby",
     id : 123 ,
     pwd : "ruby" ,
-    Email : "rubydas0395@gmail.com" ,
-    phoneno : 9040398819 
+    email : "rubydas0395@gmail.com" ,
+    phoneno : 9040398819 ,
+    dob : "03-03-1995"
    }
    
    var userId = user.id +""
