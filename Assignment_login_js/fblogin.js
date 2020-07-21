@@ -6,26 +6,29 @@ function validation(){
   var p = form['password'].value;
   var un= form['uname'].value;
   var er= document.getElementById('err1');
-  var er1 =document.getElementById('err2');
+  var er1 =document.getElementById('err3');
   var checkRes = document.getElementById("gridCheck").checked;
   var regEx = /^([a-zA-Z 0-9\.-]{2,20})@([a-z0-9-]+).([a-z]{2,8})$/;
   var regx2 = /^([A-Z]{1})([a-z 0-9]{2,7})$/;
-  if(regEx.test(e)===false && e===""){
-     document.getElementById('email').style.border = "2px solid red";
+   if(un===""){
+    document.getElementById('demo').style.border = "2px solid red";
     return false;
+   }
+ else if(regEx.test(e)===false && e===""){
+    document.getElementById('email').style.border = "2px solid red";
+    return false;
+   
   }
-  else if(regx2.test(p)===false && p===""){
-    er1.innerText="invalid password number";
-    er1.style.display = ""
-    er1.style.color = "red"
+  else if(regx2.test(p)===false || p===""){
+   er1.innerText="invalid password number";
+   er1.style.display = ""
+   er1.style.color = "red"
+   er1.style.fontSize="13px"
     document.getElementById('password').style.border = "2px solid red";
     return false;
     
   }
-  else if(un===""){
-    document.getElementById('uname').style.border = "2px solid red";
-    return false;
-  }
+  
   else if(checkRes===false){
     alert("check the box")
     return false
