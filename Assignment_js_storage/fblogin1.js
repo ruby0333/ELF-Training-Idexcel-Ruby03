@@ -10,9 +10,11 @@ var user ={
    var userId = user.id +""
    localStorage.setItem(userId,JSON.stringify(user))
    var err= document.getElementById("error");
-   var err1= document.getElementById("error");
+   var err1= document.getElementById("error1");
    function validate(){
-    var form = document.forms['MyForm']
+       debugger
+    var form =document.fblogin;
+    debugger
     console.log(form);
     var id = form['userId'].value
     var pwd = form['pwd'].value

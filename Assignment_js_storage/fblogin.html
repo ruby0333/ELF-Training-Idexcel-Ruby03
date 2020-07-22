@@ -10,12 +10,12 @@
 </head>
 <body style="background-color: #FBFBFD;"> 
     <div style="width: 100%;background-color: #3B5999; height:90px;color: white;">  
-        <form  name="MyForm" action="/profile.html" method="POST" onsubmit="validate();return false">   
+        <form  name="fblogin" action="/profile.html" method="POST" onsubmit="validate();return false">   
             <div style="float: left;width:50%;font-size: 38px;padding-left: 110px;margin-top: 15px;"><b>Facebook</b></div>
             <div style="float: left;margin-top: 5px;">
                 <label id="" for="name">Email or Phone</label><br>
                 <input type="text" name="userId" id="user"style="height:21px; border: 1px solid black;"><br>
-                <label id="err" style="display: none;"></label>
+                <label id="error" style="display: none;"></label>
                 <hr>
             </div>
             <div style="float: left;margin-left: 21px;margin-top: 5px;">
@@ -23,7 +23,7 @@
                 <input type="password" name="pwd" id="user1"style="height:21px" ><br>
                 
                 <a href=""style="font-size: 10px;color: #8F94AE;"><b>Forgotten account?</b></a><br>
-                <label id="err1" style="display: none;"></label>
+                <label id="error1" style="display: none;"></label>
             </div>
             <div style="float: left;margin-top: 27px;margin-left: 20px;">
                 <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" style="color: white;background-color: #3B5999;height: 31px;width: 55px;font-size: 15px;padding: 5px;">Login</button>
